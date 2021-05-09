@@ -27,10 +27,59 @@ public class Stage {
 	@Column(name = "description")
 	private String description;
 	
+	
+	public Stage(String place) {
+		this.place = place;
+	}
+	
 	public Stage(String place, Date startDate, Date endDate) {
 		this.place = place;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+	
+	public Long getId() {
+		return this.id;
+	}
+	
+	public String getPlace() {
+		return this.place;
+	}
+	
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	
+	public Date getStartDate() {
+		return this.startDate;
+	}
+	
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	
+	public Date getEndDate() {
+		return this.endDate;
+	}
+	
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	
+	public byte[] getImage() {
+		return this.image;
+	}
+	
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	
