@@ -1,6 +1,12 @@
 # Ulysses
-web application to plan your trips
+Web application to plan your trips in a very visual way
 
+## Installation
+
+## Example
+
+## Author and License
+Luisa Sanchez Avivar - 2021
 
 * -[ ] Model the system and basic structure
 * -[ ] Use Case 1: Retrieve all the trips
