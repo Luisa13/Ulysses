@@ -26,7 +26,7 @@ public class Trip {
 	@ManyToMany(mappedBy = "trips")
 	private Set<User>users;
 	
-	@ManyToOne
+	@ManyToOne(targetEntity = Stage.class)
 	private List<Stage>stages;
 	
 	public Trip(String name) {
