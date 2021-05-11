@@ -38,4 +38,10 @@ public class TripService implements ITripService{
 		return this.tripRepo.findAll();
 	}
 
+	@Override
+	public void deleteTripById(Long id) {
+		this.tripRepo.deleteById(id);
+		
+	}
+
 }
