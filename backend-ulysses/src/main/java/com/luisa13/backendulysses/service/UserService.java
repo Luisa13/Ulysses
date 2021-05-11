@@ -3,6 +3,7 @@ package com.luisa13.backendulysses.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import com.luisa13.backendulysses.repository.UserRepository;
 @Service
 public class UserService implements IUserService{
 
+	@Autowired
 	private UserRepository userRepo;
 
 	@Override
@@ -25,7 +27,6 @@ public class UserService implements IUserService{
 	@Override
 	public void deleteUser(User user) {
 		this.userRepo.delete(user);
-		
 	}
 
 	@Override
