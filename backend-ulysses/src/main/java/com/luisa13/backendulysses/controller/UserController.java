@@ -47,13 +47,13 @@ public class UserController {
 		return new ResponseEntity<String>(response);
 	}
 	
-	@PutMapping("/{updateuser}")
+	@PutMapping("/updateuser")
 	public ResponseEntity<String> updateUSer(@RequestBody User user) {
 		HttpStatus response;
 		try {
 			this.userService.updateUser(user);
 			response = HttpStatus.OK;
-		}catch(NoSuchElementException ex) {
+		}catch(RuntimeException ex) {
 			System.out.println(ex.getMessage());
 			response = HttpStatus.NOT_FOUND;
 		}
