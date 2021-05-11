@@ -26,7 +26,6 @@ public class StageService implements IStageService{
 	public void updateUSer(Stage stage) {
 		this.stageRepo.findById(stage.getId()).orElseThrow();
 		this.stageRepo.save(stage);
-		
 	}
 
 	@Override
@@ -37,6 +36,11 @@ public class StageService implements IStageService{
 	@Override
 	public List<Stage> getAllStages() {
 		return this.stageRepo.findAll();
+	}
+
+	@Override
+	public void deleteStageById(Long id) {
+		this.stageRepo.deleteById(id);
 	}
 
 }

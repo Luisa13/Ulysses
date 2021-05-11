@@ -8,6 +8,7 @@ public interface IStageService {
 
 	public Stage addStage(Stage stage);
 	public void deleteStage(Stage stage);
+	public void deleteStageById(Long id);
 	public void updateUSer(Stage stage);
 	public Stage findById(Long id);
 	public List<Stage> getAllStages();
