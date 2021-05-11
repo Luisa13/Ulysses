@@ -6,5 +6,4 @@ import com.luisa13.backendulysses.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	User findByName(String name);
 }
