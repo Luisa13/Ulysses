@@ -7,6 +7,7 @@ import com.luisa13.backendulysses.model.User;
 public interface IUserService {
 	 User addUSer(User user);
 	 void deleteUser(User user);
+	 void deleteUserById(Long id);
 	 User findUserById(Long id);
 	 void updateUser(User user);
 	 List<User> getAllUsers();

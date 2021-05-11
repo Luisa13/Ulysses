@@ -44,6 +44,12 @@ public class UserService implements IUserService{
 	public List<User> getAllUsers() {
 		return this.userRepo.findAll();
 	}
+
+	@Override
+	public void deleteUserById(Long id) {
+		this.userRepo.deleteById(id);
+		
+	}
 	
 	
 
