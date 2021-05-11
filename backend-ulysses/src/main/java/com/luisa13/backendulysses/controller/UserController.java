@@ -34,8 +34,17 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable Long id) {
-		this.userService.deleteUserById(id);
+	public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+		HttpStatus response;
+		try {
+			this.userService.deleteUserById(id);
+			response = HttpStatus.OK;
+		}catch(NoSuchElementException ex) {
+			System.out.println(ex.getMessage());
+			response = HttpStatus.NOT_FOUND;
+		}
+		
+		return new ResponseEntity<String>(response);
 	}
 	
 	@PutMapping("/{updateuser}")
