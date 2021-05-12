@@ -3,12 +3,11 @@ package com.luisa13.backendulysses.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.luisa13.backendulysses.model.Trip;
 import com.luisa13.backendulysses.repository.TripRepository;
 
-@Service
+@Component
 public class TripService implements ITripService{
 	
 	@Autowired

@@ -1,19 +1,12 @@
 package com.luisa13.backendulysses.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.luisa13.backendulysses.model.User;
 import com.luisa13.backendulysses.repository.UserRepository;
 
-@Service
+@Component
 public class UserService implements IUserService{
 
 	@Autowired
