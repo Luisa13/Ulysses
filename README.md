@@ -1,6 +1,7 @@
 # Ulysses
 Web application to plan your trips in a very visual way
-
+> WARNING:
+> Thi project is still under construction
 ## Installation
 
 ## Example
