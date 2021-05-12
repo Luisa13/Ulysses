@@ -8,6 +8,11 @@ Web application to plan your trips in a very visual way
 ## Author and License
 Luisa Sanchez Avivar - 2021
 
+
+<br/>
+<br/>
+
+TODO
 * -[X] Model the system and basic structure
 * -[X] Use Case 1: Retrieve all the trips
 * -[X] Use Case 2: Create a new trip
