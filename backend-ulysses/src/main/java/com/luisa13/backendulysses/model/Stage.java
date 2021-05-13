@@ -31,7 +31,7 @@ public class Stage {
 	private Trip trip;
 	
 	
-	public Stage(String place) {
+	public Stage(String place, Trip trip) {
 		this.place = place;
 	}
 	
