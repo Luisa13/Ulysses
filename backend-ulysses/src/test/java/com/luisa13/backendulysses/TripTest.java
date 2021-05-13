@@ -25,6 +25,7 @@ class TripTest {
 	@Autowired
 	TripService tripService;
 	
+	
 	@Test
 	void testSaveTrip() {
 		Trip trip = new Trip("Greek Holidays");
