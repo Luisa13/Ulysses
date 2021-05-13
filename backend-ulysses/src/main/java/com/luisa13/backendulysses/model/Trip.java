@@ -24,15 +24,13 @@ public class Trip {
 	Date date;
 	
 	@ManyToMany(mappedBy = "trips")
-	private Set<User>users;
-	
-	@ManyToOne(targetEntity = Stage.class)
-	private List<Stage>stages;
+	private Set<User>users = new HashSet<User>();
+
+	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Stage>stages = new ArrayList<Stage>();
 	
 	public Trip(String name) {
 		this.name = name;
-		this.users = new HashSet<User>();
-		this.stages = new ArrayList<Stage>();
 	}
 	
 	public Long getId() {

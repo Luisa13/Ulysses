@@ -27,6 +27,9 @@ public class Stage {
 	@Column(name = "description")
 	private String description;
 	
+	@ManyToOne(targetEntity =  Trip.class,  fetch = FetchType.LAZY)
+	private Trip trip;
+	
 	
 	public Stage(String place) {
 		this.place = place;
