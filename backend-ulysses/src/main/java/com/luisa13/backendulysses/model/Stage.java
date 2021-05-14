@@ -30,6 +30,7 @@ public class Stage {
 	@ManyToOne(targetEntity =  Trip.class,  fetch = FetchType.LAZY)
 	private Trip trip;
 	
+	public Stage() {}
 	
 	public Stage(String place, Trip trip) {
 		this.place = place;

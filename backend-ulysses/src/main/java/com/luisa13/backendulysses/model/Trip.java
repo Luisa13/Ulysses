@@ -29,6 +29,8 @@ public class Trip {
 	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Stage>stages = new ArrayList<Stage>();
 	
+	public Trip() {}
+	
 	public Trip(String name) {
 		this.name = name;
 	}

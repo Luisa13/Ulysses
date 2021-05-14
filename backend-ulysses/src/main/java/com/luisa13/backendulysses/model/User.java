@@ -20,6 +20,8 @@ public class User {
 	@ManyToMany
 	Set<Trip> trips;
 	
+	public User() {}
+	
 	public User(String name, String surname) {
 		this.name = name;
 		this.surname = surname;
