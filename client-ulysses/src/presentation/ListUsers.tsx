@@ -1,21 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
+import * as Provider from '../Service/Provider';
+import User from "../domain/entity/User";
+
+
 
 const ListUser: React.FC = ()  => {
 
-    //const bloc = 
-    React.useEffect(() => {}, []);
+    const bloc = Provider.ProviderUsers();
+    const[users, setUsers] = useState(Array<User>());
+    bloc.getUsers()
+    .then(res =>{
+        console.log(res);
+        setUsers(res);
+    });
+    /*React.useEffect(() => {
+        setListUsers(bloc.getUsers());
+    }, [bloc]);*/
 
     return(
         <table>
             <thead>
                 <tr>
-                    <th>C1</th>
-                    <th>C2</th>
-                    <th>C3</th>
+                    <th>NAME</th>
+                    <th>SURNAME</th>
                 </tr>
             </thead>
             <tbody>
+                {
+                    users.map(
+                        (user: any) =>
+                        <tr key={user.id}>
+                            <td>{user.name}</td>
+                            <td>{user.surname}</td>
+                        </tr>
 
+                    )
+                }
             </tbody>
         </table>
 
