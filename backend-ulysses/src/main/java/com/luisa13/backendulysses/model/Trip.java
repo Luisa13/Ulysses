@@ -26,7 +26,7 @@ public class Trip {
 	@ManyToMany(mappedBy = "trips")
 	private Set<User>users = new HashSet<User>();
 
-	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "trip", orphanRemoval = true)
 	private List<Stage>stages = new ArrayList<Stage>();
 	
 	public Trip() {}

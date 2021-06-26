@@ -22,6 +22,8 @@ public class User implements Serializable{
 	private String email;
 	@Column(name = "password")
 	private String password;
+	@Column(name = "role")
+	private String role;
 	@ManyToMany
 	Set<Trip> trips;
 	
@@ -68,6 +70,14 @@ public class User implements Serializable{
 	
 	public String  getPassword() {
 		return this.password;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public String getRole() {
+		return this.role;
 	}
 	
 	public Set<Trip> getTrips(){
