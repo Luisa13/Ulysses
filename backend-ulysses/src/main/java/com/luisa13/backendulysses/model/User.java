@@ -1,5 +1,6 @@
 package com.luisa13.backendulysses.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,14 +18,19 @@ public class User {
 	private String name;
 	@Column(name = "surname")
 	private String surname;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "password")
+	private String password;
 	@ManyToMany
 	Set<Trip> trips;
 	
 	public User() {}
 	
-	public User(String name, String surname) {
+	public User(String name, String surname, String email) {
 		this.name = name;
 		this.surname = surname;
+		this.email = email;
 		this.trips = new HashSet<Trip>();
 	}
 	
@@ -46,6 +52,22 @@ public class User {
 	
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String  getPassword() {
+		return this.password;
 	}
 	
 	public Set<Trip> getTrips(){
