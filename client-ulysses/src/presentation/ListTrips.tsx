@@ -29,3 +29,5 @@ const ListTrips: React.FC = () =>{
         </tbody>
     </table>);
 }
+
+export default ListTrips;
