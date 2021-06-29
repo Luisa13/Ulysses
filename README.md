@@ -1,5 +1,5 @@
 # Ulysses
-Web application to plan your trips in a very visual way
+Web application to plan your trips in a very visual way developed following CLEAN architecture.
 > WARNING:
 > This project is under construction
 
