@@ -12,6 +12,7 @@ Web application to plan your trips in a very visual way developed following CLEA
 * JUnit 5
 * [Formik](https://formik.org) for client side style
 * React 
+* Typescript
 
 ## Start the application
 Clone this project
