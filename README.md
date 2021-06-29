@@ -1,5 +1,5 @@
 # Ulysses
-Web application to plan your trips in a very visual way
+Web application to plan your trips in a very visual way developed following CLEAN architecture.
 > WARNING:
 > This project is under construction
 
@@ -12,6 +12,7 @@ Web application to plan your trips in a very visual way
 * JUnit 5
 * [Formik](https://formik.org) for client side style
 * React 
+* Typescript
 
 ## Start the application
 Clone this project
