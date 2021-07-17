@@ -31,6 +31,10 @@ const Login: React.FC = () => {
     })
   };
 
+  /*const test = async () =>{
+    console.log("Login... ");
+  }*/
+
   const handleSubmit = async (values: LoginFormFields, formikHelpers: FormikHelpers<LoginFormFields>) => {
     try {
       console.log("Login... ");
@@ -60,10 +64,8 @@ const Login: React.FC = () => {
   return (
     <Container fluid className="Login mt-5">
       <Row>
+      <h3>Login</h3>
         <Col>
-          <Card className="m-auto">
-            <Card.Header className="font-weight-bold text-center">Login</Card.Header>
-            <Card.Body>
               {errorMessage && <p className="text-center text-danger">{errorMessage}</p>}
               <Formik initialValues={form.initialValues}
                       validationSchema={form.validationSchema}
@@ -84,6 +86,7 @@ const Login: React.FC = () => {
                         {formikProps.errors.username}
                       </Form.Control.Feedback>
                     </Form.Group>
+                    <br></br>
                     <Form.Group controlId="password">
                       <Form.Label>Password</Form.Label>
                       <Field name="password">
@@ -99,6 +102,7 @@ const Login: React.FC = () => {
                         {formikProps.errors.password}
                       </Form.Control.Feedback>
                     </Form.Group>
+                    <br></br>
                     <Form.Group>
                       <Button 
                       variant="primary"
@@ -111,12 +115,40 @@ const Login: React.FC = () => {
                   </Form>
                 }
               </Formik>
-            </Card.Body>
-          </Card>
+
         </Col>
       </Row>
     </Container>
   );
+
+  /*return(
+        <Form>   
+            <h3>Log in</h3>
+             <div className="form-group">
+                <label>Username</label>
+                <input type="username" className="form-control" placeholder="Enter password" />
+            </div>
+
+            <div className="form-group">
+                <label>Password</label>
+                <input type="password" className="form-control" placeholder="Enter password" />
+            </div>
+
+            <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                </div>
+            </div>
+
+            <Button onClick={this.test} className="btn btn-dark btn-lg btn-block" >Login</Button>
+            <p className="forgot-password text-right">
+              Forgot <a href="#">password?</a>
+            </p>
+
+        </Form>
+
+  );*/
 };
 
 export default Login;
