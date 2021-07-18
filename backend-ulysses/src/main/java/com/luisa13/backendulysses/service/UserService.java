@@ -13,7 +13,7 @@ public class UserService implements IUserService{
 	private UserRepository userRepo;
 
 	@Override
-	public User addUSer(User user) {
+	public User addUser(User user) {
 		return this.userRepo.save(user);
 	}
 

@@ -8,7 +8,7 @@ import com.luisa13.backendulysses.model.User;
 
 @Service
 public interface IUserService {
-	 User addUSer(User user);
+	 User addUser(User user);
 	 void deleteUser(User user);
 	 void deleteUserById(Long id);
 	 User findUserById(Long id);

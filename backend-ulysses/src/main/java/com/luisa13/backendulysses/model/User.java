@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable{
@@ -65,7 +67,9 @@ public class User implements Serializable{
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		// In order to be recognized later in the authentication 
+		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		this.password = passwordEncoder.encode(password);
 	}
 	
 	public String  getPassword() {
@@ -90,6 +94,12 @@ public class User implements Serializable{
 	
 	public void addTrip(Trip trip) {
 		this.trips.add(trip);
+	}
+	
+	@Override
+	public String toString() {
+		return "Name: " + this.name + "\nSurname: " + this.surname ;
+		
 	}
 	
 	
