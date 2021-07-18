@@ -71,7 +71,7 @@ const Login: React.FC = () => {
                       validationSchema={form.validationSchema}
                       onSubmit={handleSubmit}>
                 {(formikProps: FormikProps<LoginFormFields>) =>
-                  <Form onSubmit={formikProps.handleSubmit}>
+                  <Form onSubmit={formikProps.handleSubmit} method="post">
                     <Form.Group controlId="username">
                       <Form.Label>Username</Form.Label>
                       <Field name="username">
@@ -104,13 +104,13 @@ const Login: React.FC = () => {
                     </Form.Group>
                     <br></br>
                     <Form.Group>
-                      <Button 
-                      variant="primary"
-                      type="submit"
-                              block
-                              disabled={!formikProps.isValid || formikProps.isSubmitting}>
-                        Login
-                      </Button>
+                        <Button 
+                        variant="primary"
+                        type="submit"
+                                block
+                                disabled={!formikProps.isValid || formikProps.isSubmitting}>
+                          Login
+                        </Button>
                     </Form.Group>
                   </Form>
                 }
