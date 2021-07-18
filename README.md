@@ -10,7 +10,7 @@ Web application to plan your trips in a very visual way developed following CLEA
 * Spring Data JPA
 * Maven 3.6.3
 * JUnit 5
-* [Formik](https://formik.org) for client side style
+* [Formik](https://formik.org) 
 * React 
 * Typescript
 
