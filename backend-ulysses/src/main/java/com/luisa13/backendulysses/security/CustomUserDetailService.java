@@ -21,15 +21,15 @@ public class CustomUserDetailService implements UserDetailsService{
 		User user = userRepo.findByName(usernameEmail)
 				.orElseThrow(
 						() -> new UsernameNotFoundException("User not found with username or email: " + usernameEmail));
-		
-		return UserPrincipal.create(user);
+
+		return new UserPrincipal(user);
 	}
 	
 	public UserDetails loadUserById(Long userId) {
 		User user = userRepo.findById(userId).orElseThrow(
 				()-> new UsernameNotFoundException("User not found with id: " + userId));
 		
-		return UserPrincipal.create(user);
+		return new UserPrincipal(user);
 				
 	}
 

@@ -1,6 +1,7 @@
 package com.luisa13.backendulysses.security;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 //import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
@@ -17,54 +18,36 @@ import com.luisa13.backendulysses.model.User;
  * */
 public class UserPrincipal implements UserDetails{
 	
-	private Long id;
-	private String username;
-	private String email;
-	private String password;
-	private Collection<? extends GrantedAuthority> authorities;
 	
+	private User user;
 	
-	public UserPrincipal(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
-		this.id = id;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.authorities = authorities;
+	public UserPrincipal(User user) {
+		this.user = user;
 	}
+
 	
-	public static UserPrincipal create(User user) {
-		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-	    authorities.add(new SimpleGrantedAuthority(user.getRole()));
-		
-		return new UserPrincipal(
-				user.getId(), 
-				user.getName(), 
-				user.getEmail(), 
-				user.getPassword(),
-				authorities
-				);
-	}
 	public String getEmail() {
-		return this.email;
+		return this.user.getEmail();
 	}
 	
 	public Long getId() {
-		return this.id;
+		return this.user.getId();
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.authorities;
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(this.user.getRole());
+        return Arrays.asList(authority);
 	}
 
 	@Override
 	public String getPassword() {
-		return this.password;
+		return this.user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return this.username;
+		return this.user.getName();
 	}
 
 	@Override
