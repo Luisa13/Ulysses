@@ -11,7 +11,7 @@ export const login = async (username:string, password: string) => {
             //...buildBasicAuthHeader(username , password)
           }
     });
-    return response.text();
+    return response.json();
 };
 
 export const jsonHeader = {
