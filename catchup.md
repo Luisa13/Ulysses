@@ -12,6 +12,7 @@ REFERENCES
 
 **Security**
 - [Basic pring Boot Security Authentication with JPA](https://www.codejava.net/frameworks/spring-boot/spring-boot-security-authentication-with-jpa-hibernate-and-mysql)
+- [Tutorial for the client side](https://lemoncode.net/lemoncode-blog/2020/12/20/react-router-y-rutas-autorizadas-i) (in spanish)
 - [Spring Boot security best practices](https://snyk.io/blog/spring-boot-security-best-practices/)
 - [CORS config filter](https://stackoverflow.com/questions/40286549/spring-boot-security-cors)
 
