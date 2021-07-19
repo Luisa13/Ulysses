@@ -17,7 +17,6 @@ import com.luisa13.backendulysses.security.JwtLoginRequest;
 import com.luisa13.backendulysses.security.JwtTokenProvider;
 import com.luisa13.backendulysses.service.UserService;
 
-//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -31,12 +30,11 @@ public class AuthController {
 	JwtTokenProvider tokenProvider;
 	
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(/*@RequestParam("username") final String username,
-		    @RequestParam("password") final String password*/@RequestBody JwtLoginRequest loginRequest){
+	public ResponseEntity<?> authenticateUser(@RequestBody JwtLoginRequest loginRequest){
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
 				loginRequest.getUsername(), 
 				loginRequest.getPassword());
-				//username, password);
+		
 		Authentication authentication =  this.authManager.authenticate(token);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwtToken = this.tokenProvider.generateToken(authentication);

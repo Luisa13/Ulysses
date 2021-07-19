@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	/**
-	 * Set the basic configuration for CORS in spring security
+	 * Sets the basic configuration for CORS in spring security
 	 * 
 	 * */
 	private CorsConfiguration corsFilterConfiguration() {
