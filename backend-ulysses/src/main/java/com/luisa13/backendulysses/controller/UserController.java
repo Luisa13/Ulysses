@@ -69,7 +69,6 @@ public class UserController {
 		return this.userService.getAllUsers();
 	}
 	
-	
-	
+
 	
 }

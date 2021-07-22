@@ -43,6 +43,11 @@ public class UserService implements IUserService{
 		this.userRepo.deleteById(id);
 		
 	}
+
+	@Override
+	public User findUserByName(String name) {
+		return this.userRepo.findByName(name).get();
+	}
 	
 	
 
