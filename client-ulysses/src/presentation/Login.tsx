@@ -8,6 +8,8 @@ import * as Yup from 'yup';
 
 import * as  ApiService from "../Service/ApiService";
 import { AuthContext } from '../domain/components/authContext';
+import useAppContext from '../hooks/useAppContext';
+import User from '../domain/entity/User';
 
 type LoginFormFields = {
   username: string
@@ -20,7 +22,9 @@ const Login: React.FC = () => {
   //const [username, setUsername] = useState('');
   //const [password, setPassword] = useState('');
   const{ setUserInfo } = React.useContext(AuthContext);
+  const {setCurrentUser} = useAppContext();
 
+  // Just for form validation
   const form: {initialValues: LoginFormFields, validationSchema: Yup.AnyObjectSchema} = {
     initialValues: {
       username: '',
@@ -36,17 +40,34 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: LoginFormFields, formikHelpers: FormikHelpers<LoginFormFields>) => {
     try {
       console.log("Login... ");
-      const token = await ApiService.login(values.username, values.password)
-      .then( res =>{
+     const token = await ApiService.login(values.username, values.password)
+     // console.log(token.accessToken);
+     const user = await ApiService.getUser(token.accessToken)
+     .then(res =>{
+       //if('id' in res){
+        //setCurrentUser(res);
+        history.push({pathname: "/Entry"});
+       //}
+     })
+     .catch(ex => {console.error("Error: " + ex)});
+      //console.log(user);
+     // setCurrentUser(user);
+      
+      //console.log(user);
+      /*const token = await ApiService.login(values.username, values.password).then( res =>{
           if('accessToken' in res){
             setUserInfo(values.username);
-            history.push("/Entry");
+            
+            //setCurrentUser(new User(({id:1, name:"bla", surname:"dd"}));
+            history.push({pathname: "/Entry"});
+
+
           }else if ('status' in res){
             if(res.status == 403){
               setErrorMessage('Wrong credentials');
             }
           }
-      });
+      });*/
 
       
     } catch (error) {

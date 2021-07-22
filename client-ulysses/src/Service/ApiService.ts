@@ -8,7 +8,6 @@ export const login = async (username:string, password: string) => {
         body: JSON.stringify({"username": username , "password": password}),
         headers: {
             ...jsonHeader
-            //...buildBasicAuthHeader(username , password)
           }
     });
     return response.json();
@@ -17,10 +16,15 @@ export const login = async (username:string, password: string) => {
 export const jsonHeader = {
     'Content-Type': 'application/json;'
   };
-  
-  export const buildBasicAuthHeader = (username: string, password: string) => {
-    return {
-      'Authorization': 'Basic ' + btoa(username + ':' + password)
-    };
-  };
+
+
+export const getUser = async (token: string) => {
+    const response = await fetch(`${API_BASE_URL}/auth/getCurrentUser`, {
+      method: 'GET',
+      headers: {
+        "Authorization": token    
+      }
+    });
+    return response.json();
+  }
 
