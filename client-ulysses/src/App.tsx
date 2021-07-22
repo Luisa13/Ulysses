@@ -33,10 +33,11 @@ function App() {
               <Route exact path = "/">
                 <Login/>
               </Route>
-              <AuthRouteComponent exact path = "/Entry">
-                <EntryPage/>
+              <AuthRouteComponent>
+                  <EntryPage/>
+                
               </AuthRouteComponent>
-              
+               
             </Switch>
           </Router>
       </AuthProvider>
