@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import * as Provider from "../Service/Provider";
+import * as Provider from "../util/Provider";
 import Trip from "../domain/entity/Trip";
 
 const ListTrips: React.FC = () =>{

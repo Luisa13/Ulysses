@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Stage from '../domain/entity/Stage';
-import * as Provider from '../Service/Provider';
+import * as Provider from '../util/Provider';
 
 const ListStage: React.FC = () =>{
     const bloc = Provider.ProviderStages();
