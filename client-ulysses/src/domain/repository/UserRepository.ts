@@ -1,5 +1,6 @@
 import IUserRepository from "./IUserRepository";
 import User from '../entity/User'
+import Trip from '../entity/Trip'
 
 
 
@@ -7,6 +8,10 @@ class UserDTO{
     id: number = 0;
     name: string = "";
     surname: string = "";
+    email: string = "";
+    password: string = "";
+    role: string = "";
+    trips: Trip[] = [];
 }
 
 export default class UserRepository implements IUserRepository{
@@ -18,6 +23,6 @@ export default class UserRepository implements IUserRepository{
         const response = await fetch(localUrl);
         const jsonData = await response.json();
 
-        return jsonData.map((user: UserDTO) => new User(user.id, user.name, user.surname));
+        return jsonData.map((user: UserDTO) => new User(user.id, user.name, user.surname, user.email, user.password, user.role, user.trips));
     }
 }
