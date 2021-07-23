@@ -6,7 +6,7 @@ import {Field, FieldProps, Formik, FormikHelpers, FormikProps} from 'formik';
 import * as Yup from 'yup';
 
 
-import * as  ApiService from "../Service/ApiService";
+import * as  ApiService from "../util/ApiService";
 import { AuthContext } from '../domain/components/authContext';
 import useAppContext from '../hooks/useAppContext';
 import User from '../domain/entity/User';
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   //const [username, setUsername] = useState('');
   //const [password, setPassword] = useState('');
   const{ setUserInfo } = React.useContext(AuthContext);
-  const {setCurrentUser} = useAppContext();
+  const {currentUser, setCurrentUser} = useAppContext();
 
   // Just for form validation
   const form: {initialValues: LoginFormFields, validationSchema: Yup.AnyObjectSchema} = {
@@ -40,45 +40,27 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: LoginFormFields, formikHelpers: FormikHelpers<LoginFormFields>) => {
     try {
       console.log("Login... ");
-     const token = await ApiService.login(values.username, values.password)
-     // console.log(token.accessToken);
-     const user = await ApiService.getUser(token.accessToken)
-     .then(res =>{
-       //if('id' in res){
-        //setCurrentUser(res);
-        history.push({pathname: "/Entry"});
-       //}
-     })
-     .catch(ex => {console.error("Error: " + ex)});
-      //console.log(user);
-     // setCurrentUser(user);
-      
-      //console.log(user);
-      /*const token = await ApiService.login(values.username, values.password).then( res =>{
-          if('accessToken' in res){
-            setUserInfo(values.username);
-            
-            //setCurrentUser(new User(({id:1, name:"bla", surname:"dd"}));
-            history.push({pathname: "/Entry"});
-
-
-          }else if ('status' in res){
-            if(res.status == 403){
-              setErrorMessage('Wrong credentials');
-            }
+      const token = await ApiService.login(values.username, values.password);
+      const user = await ApiService.getUser(token.accessToken)
+      .then(res =>{
+          if('id' in res){
+            //setCurrentUser(res);
+            //console.log(currentUser);
+            setUserInfo(res);
+            history.push({pathname: "/listTripsUser"});
           }
-      });*/
+      })
+      .catch(ex => {console.error("Error: " + ex)});
 
-      
-    } catch (error) {
-        formikHelpers.setSubmitting(false);
-        if (error instanceof TypeError) {
-          setErrorMessage('Unable to connect to service.');
-        } else {
-          setErrorMessage(error.message);
-        }
-    }
-  };
+      } catch (error) {
+          formikHelpers.setSubmitting(false);
+          if (error instanceof TypeError) {
+            setErrorMessage('Unable to connect to service.');
+          } else {
+            setErrorMessage(error.message);
+          }
+      }
+    };
 
   return (
     <div className="outer">
