@@ -7,6 +7,11 @@ import java.util.Set;
 import javax.persistence.*;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+/**
+ * This class represents a user in the system who can create trips
+ * 
+ * @author luisa
+ * */
 
 @Entity
 @Table(name = "users")

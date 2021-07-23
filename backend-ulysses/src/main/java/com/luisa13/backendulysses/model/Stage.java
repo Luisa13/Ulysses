@@ -3,6 +3,13 @@ package com.luisa13.backendulysses.model;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * This class represents a stage within a specific trip.
+ * 
+ * @author luisa
+ * */
+
+
 @Entity
 @Table(name = "stages")
 public class Stage {

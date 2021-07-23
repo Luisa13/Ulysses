@@ -29,13 +29,22 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
+	/**
+	 * Creates a new user in the system.
+	 * @param User
+	 * @return User
+	 * */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public User addUser(@RequestBody User user) {
 		return this.userService.addUser(user);
 	}
 	
+	/**
+	 * Deletes a existing user in the system.
+	 * @param Long
+	 * @return HttpStatus
+	 * */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable Long id) {
 		HttpStatus response;
@@ -50,6 +59,11 @@ public class UserController {
 		return new ResponseEntity<String>(response);
 	}
 	
+	/**
+	 * Updates a user that already exists in the system.
+	 * @param User
+	 * @return HttpStatus
+	 * */
 	@PutMapping("/updateuser")
 	public ResponseEntity<String> updateUSer(@RequestBody User user) {
 		HttpStatus response;
@@ -64,6 +78,10 @@ public class UserController {
 		return new ResponseEntity<String>(response);
 	}
 	
+	/**
+	 * Returns a list with all the users in the system.
+	 * @return List<User>
+	 * */
 	@GetMapping("/allusers")
 	public List<User> getAllUser(){
 		return this.userService.getAllUsers();

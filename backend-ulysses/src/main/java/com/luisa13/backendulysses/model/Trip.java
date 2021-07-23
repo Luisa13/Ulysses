@@ -8,6 +8,12 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+/**
+ * This class represents a trip created by a user
+ * 
+ * @author luisa
+ * */
+
 @Entity
 @Table(name = "trips")
 public class Trip {

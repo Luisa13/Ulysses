@@ -26,6 +26,7 @@ public class StageController {
 	@Autowired
 	private StageService stageService;
 	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Stage addStage(@RequestBody Stage stage) {

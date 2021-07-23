@@ -24,12 +24,23 @@ public class TripController {
 	@Autowired
 	private TripService tripService;
 	
+	/**
+	 * Creates a new trip for a specific user.
+	 * @param Trip
+	 * @return Trip
+	 * */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Trip addTrip(@RequestBody Trip trip) {
 		return this.tripService.addTrip(trip);
 	}
 	
+	
+	/**
+	 * Deletes a trip which already exists given its id.
+	 * @param Long
+	 * @return HttpStatus
+	 * */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteTrip(@PathVariable Long id){
 		HttpStatus response;
@@ -44,6 +55,12 @@ public class TripController {
 		return new ResponseEntity<String>(response);
 	}
 	
+	
+	/**
+	 * Updates a trip and returns an HttpStatus OK response if succeeded.
+	 * @param Trip
+	 * @return HttpStatus
+	 * */
 	@PostMapping("/updatetrip")
 	public ResponseEntity<String> updateTrip(@RequestBody Trip trip){
 		HttpStatus response;
@@ -59,6 +76,10 @@ public class TripController {
 		return new ResponseEntity<String>(response);
 	}
 	
+	/**
+	 * Returns a list with all the trips.
+	 * @return List<Trip>
+	 * */
 	@GetMapping("/alltrips")
 	public List<Trip> getAllTrip(){
 		return this.tripService.getAllTrips();
