@@ -29,9 +29,7 @@ function App() {
               <AuthRouteComponent path = "/listTripsUser">
                   <ListTripsUser/>
               </AuthRouteComponent>
-
-        
-               
+              
             </Switch>
           </Router>
       </AuthProvider>

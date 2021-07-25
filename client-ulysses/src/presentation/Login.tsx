@@ -44,8 +44,6 @@ const Login: React.FC = () => {
       const user = await ApiService.getUser(token.accessToken)
       .then(res =>{
           if('id' in res){
-            //setCurrentUser(res);
-            //console.log(currentUser);
             setUserInfo(res);
             history.push({pathname: "/listTripsUser"});
           }
