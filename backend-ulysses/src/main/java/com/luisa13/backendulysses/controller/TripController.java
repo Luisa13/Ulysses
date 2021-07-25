@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luisa13.backendulysses.model.Trip;
+import com.luisa13.backendulysses.model.User;
 import com.luisa13.backendulysses.service.TripService;
+import com.luisa13.backendulysses.service.UserService;
 
 @RestController
 @RequestMapping("/trip")
@@ -24,15 +26,23 @@ public class TripController {
 	@Autowired
 	private TripService tripService;
 	
+	@Autowired
+	private UserService userService;
+	
 	/**
 	 * Creates a new trip for a specific user.
 	 * @param Trip
 	 * @return Trip
 	 * */
-	@PostMapping
+	@PostMapping("/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Trip addTrip(@RequestBody Trip trip) {
-		return this.tripService.addTrip(trip);
+	public Trip addTrip(@RequestBody Trip trip, @PathVariable Long idUser) {
+		User user = this.userService.findUserById(idUser);
+		Trip newTrip = this.tripService.addTrip(trip);
+		user.addTrip(newTrip);
+		this.userService.updateUser(user);
+		
+		return newTrip;
 	}
 	
 	
