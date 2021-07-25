@@ -3,15 +3,18 @@ import Stage from "../entity/Stage";
 
 export default class Trip{
     id: number;
-    place: string;
-    users: Set<User>;
+    name: string;
+    date: string;
+    //users: Set<number|undefined>;
+    usersId: (number|undefined)[];
     stages: Stage[];
 
     
-    constructor(id: number, place: string, users: Set<User>, stages: Stage[]){
+    constructor(id: number, name: string, date: string, usersId: (number|undefined)[], stages: Stage[]){
         this.id = id;
-        this.place = place;
-        this.users = users;
+        this.name = name;
+        this.date = date;
+        this.usersId = usersId;
         this.stages = stages;
     }
 }

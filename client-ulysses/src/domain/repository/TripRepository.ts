@@ -5,8 +5,10 @@ import Stage from '../entity/Stage'
 
 class TripDTO{
     id: number = 0;
-    place: string = "";
-    users: Set<User> = new Set<User>();
+    name: string = "";
+    date: string = "";
+    //users: Set<number> = new Set<number>();
+    users: number[] = [];
     stages: Stage[] = [];
 }
 
@@ -17,7 +19,7 @@ export default class TripRepository implements ITripRepository{
         const response = await fetch(localURL);
         const jsonData = await response.json();
 
-        return jsonData.map((trip: TripDTO) => new Trip(trip.id, trip.place, trip.users, trip.stages));
+        return jsonData.map((trip: TripDTO) => new Trip(trip.id, trip.name, trip.date, trip.users, trip.stages));
     }
     
     
