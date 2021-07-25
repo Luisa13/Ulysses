@@ -7,6 +7,7 @@ export default class Trip{
     users: Set<User>;
     stages: Stage[];
 
+    
     constructor(id: number, place: string, users: Set<User>, stages: Stage[]){
         this.id = id;
         this.place = place;
