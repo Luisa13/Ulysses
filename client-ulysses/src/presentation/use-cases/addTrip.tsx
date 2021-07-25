@@ -1,23 +1,42 @@
 import React, {useState} from 'react'
 import {Button, Form, Modal} from 'react-bootstrap';
+import { Field, FormikProps } from 'formik';
 
 import { AuthContext } from '../../domain/components/authContext';
-import User from '../../domain/entity/User'
+import * as ApiService from '../../util/ApiService'
+import Stage from '../../domain/entity/Stage';
+import Trip from '../../domain/entity/Trip';
+
 
 type Props = {
     show: boolean
     hide: () => void
-    //user: User
 }
 
-const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
-    console.log("show")
-    console.log(show)
-    const{ userInfo } = React.useContext(AuthContext);
-    
 
-    const handleAddUser = () =>{
+const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
+    const{ userInfo } = React.useContext(AuthContext);
+    const[state, setState] = useState({name: "", date: new Date()});
+
+
+    const handleInputField = (event: React.ChangeEvent<HTMLInputElement>) =>{
+        event.preventDefault();
+        const { name, value } = event.target;
+        setState((prev)=>({
+            ...prev,
+            [name]: value
+        }));
+    }
+
+
+    const handleAddTrip = async() =>{
         console.info("processing api call...");
+        const users: (number | undefined)[] = [];
+        users.push(userInfo?.id)
+
+        const newTrip = new Trip(1, state.name, state.date.toString(), users, []);
+        const response = await ApiService.createTrip(newTrip);
+    
     }
 
 
@@ -33,25 +52,25 @@ const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
 
             <Modal.Body>
             <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" >
                     <Form.Label>Name's Trip</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name for your trip" />
+                    <Form.Control name = "name" type="text" placeholder="Enter name for your trip" onChange = {handleInputField} />
                     <Form.Text className="text-muted">
                     This will be just the name for your trip :).
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" >
                     <Form.Label>Date</Form.Label>
-                    <Form.Control type="date" placeholder="Date" />
+                    <Form.Control name = "date" type="date" placeholder="Date" onChange = {handleInputField}/>
                 </Form.Group>
-    
             </Form>
+
             </Modal.Body>
 
             <Modal.Footer>
                 <Button variant="secondary" onClick = {hide}>Cancel</Button>
-                <Button variant="primary" onClick = {handleAddUser}>Save changes</Button>
+                <Button variant="primary" onClick = {handleAddTrip}>Save changes</Button>
             </Modal.Footer>
         </Modal>
 

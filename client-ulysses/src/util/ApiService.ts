@@ -1,10 +1,8 @@
-import User from '../domain/entity/User';
-
 
 const API_BASE_URL = "http://localhost:8080";
 
 export const login = async (username:string, password: string) => {
-  console.log(JSON.stringify({"username": username , "password": password}))
+
     const response = await fetch(`${API_BASE_URL}/auth/signin`, {
         credentials: 'include',
         method: 'POST',
@@ -33,8 +31,6 @@ export const getUser = async (token: string) => {
 
 
   export const updateUser = async (user:object) =>{
-    console.log("JSON:")
-    console.log(JSON.stringify({user}))
 
     const response = await fetch(`${API_BASE_URL}/user/updateuser`, {
       method: 'PUT',
@@ -43,6 +39,20 @@ export const getUser = async (token: string) => {
       },
       body: JSON.stringify(user),
     });
+    return response.json();
+  }
+
+
+  export const createTrip = async (trip: object) =>{
+    console.log(JSON.stringify(trip));
+    const response = await fetch(`${API_BASE_URL}/trip/`, {
+      method: 'POST',
+      headers: {
+        ...jsonHeader
+      },
+      body: JSON.stringify(trip),
+    });
+
     return response.json();
   }
 

@@ -40,7 +40,7 @@ public class Trip {
 	public Trip(String name) {
 		this.name = name;
 	}
-	
+
 	public Long getId() {
 		return this.id;
 	}
