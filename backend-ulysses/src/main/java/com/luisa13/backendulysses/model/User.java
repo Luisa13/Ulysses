@@ -107,5 +107,44 @@ public class User implements Serializable{
 		
 	}
 	
+	public boolean equal(Object obj) {
+		if(obj != null)
+			return false;
+		
+		if(obj == this)
+			return true;
+		
+		if(this.getClass() != obj.getClass())
+			return false;
+		
+		User user = (User)obj;
+		
+		return this.id.equals(user.id) &&
+				this.name.equals(user.name) &&
+				this.surname.equals(user.surname) &&
+				this.email.equals(user.email) &&
+				this.password.equals(user.password) &&
+				this.role.equals(user.role);
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = 11;
+		if(this.id != null)
+			result = 31 * result + this.id.hashCode();
+		if(this.name != null)
+			result = 31 * result + this.name.hashCode();
+		if(this.surname != null)
+			result = 31 * result + this.surname.hashCode();
+		if(this.email != null)
+			result = 31 * result + this.email.hashCode();
+		if(this.password != null)
+			result = 31 * result + this.password.hashCode();
+		if(this.role != null)
+			result = 31 * result + this.role.hashCode();
+		
+		return 11;
+	}
+	
 	
 }

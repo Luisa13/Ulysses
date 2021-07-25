@@ -21,13 +21,13 @@ public class Trip {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idTrip")
-	Long id;
+	private Long id;
 	
 	@Column(name = "name")
-	String name;
+	private String name;
 	
 	@Column(name = "date")
-	Date date;
+	private Date date;
 	
 	@ManyToMany(mappedBy = "trips")
 	private Set<User>users = new HashSet<User>();
@@ -71,6 +71,44 @@ public class Trip {
 	
 	public void setStages(List<Stage> stages) {
 		this.stages = stages;
+	}
+	
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == null)
+			return false;
+		
+		if(o == this)
+			return true;
+		
+		if(this.getClass() != o.getClass())
+			return false;
+		
+		Trip trip = (Trip)o;
+		return this.id.equals(trip.id) && 
+				this.date.equals(trip.date) && 
+				this.name.equals(trip.name) && 
+				this.stages.equals(trip.stages) &&
+				this.users.equals(trip.users);
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = 11;
+		if(this.id != null) 
+			result = 31 * result + this.id.hashCode();
+		if(this.date != null)
+			result = 31 * result + this.date.hashCode();
+		if(this.name != null)
+			result = 31 * result + this.name.hashCode();
+		if(this.users != null)
+			result = 31 * result + this.users.hashCode();
+		if(this.stages != null)
+			result = 31 * result + this.stages.hashCode();
+				
+		
+		return result;
 	}
 
 }

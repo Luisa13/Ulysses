@@ -93,5 +93,48 @@ public class Stage {
 		this.description = description;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		
+		if(obj == this)
+			return true;
+		
+		if(this.getClass() != obj.getClass())
+			return false;
+		
+		Stage stage = (Stage)obj;
+		
+		return this.id.equals(stage.id) &&
+				this.place.equals(stage.place) &&
+				this.startDate.equals(stage.startDate) &&
+				this.endDate.equals(stage.endDate) &&
+				this.image.equals(stage.image) &&
+				this.description.equals(stage.description);
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = 11;
+		
+		if(this.id != null)
+			result = 31 * result + this.id.hashCode();
+		if(this.place != null)
+			result = 31 * result + this.place.hashCode();
+		if(this.startDate != null)
+			result = 31 * result + this.startDate.hashCode();
+		if(this.endDate != null)
+			result = 31 * result + this.endDate.hashCode();
+		if(this.image != null)
+			result = 31 * result + this.image.hashCode();
+		if(this.description != null)
+			result = 31 * result + this.description.hashCode();
+		
+		
+		
+		return result;
+	}
+	
 	
 }
