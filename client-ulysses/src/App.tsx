@@ -3,20 +3,20 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {AuthProvider} from "./domain/components/authContext";
 import {AuthRouteComponent} from "./domain/components/authRoute";
+import Header from './presentation/headerBar';
 
-//import ListUser from './presentation/ListUsers';
-//import ListStage from './presentation/ListStages';
 import ListTripsUser from "./presentation/listTripsUser"; 
-import AddNewTripModal from "./presentation/use-cases/addTrip"
 import Login from './presentation/Login';
+import Register from './presentation/register';
+import DetailTripStages from './presentation/detailTripStages';
 
 
 function App() {
+
   return (
     <div className="App">
 
-      
-      
+    <Header></Header>
       <header className="App-header"> </header>
       <AuthProvider>
           <Router>
@@ -26,10 +26,18 @@ function App() {
                 <Login/>
               </Route>
 
+              <Route exact path = "/register">
+                <Register/>
+              </Route>
+
               <AuthRouteComponent path = "/listTripsUser">
                   <ListTripsUser/>
               </AuthRouteComponent>
-              
+
+              <AuthRouteComponent path = "/detailTripStages">
+                  <DetailTripStages/>
+              </AuthRouteComponent>
+
             </Switch>
           </Router>
       </AuthProvider>
