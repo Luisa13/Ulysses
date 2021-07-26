@@ -6,6 +6,7 @@ import { AuthContext } from '../../domain/components/authContext';
 import * as ApiService from '../../util/ApiService'
 import Stage from '../../domain/entity/Stage';
 import Trip from '../../domain/entity/Trip';
+import { render } from '@testing-library/react';
 
 
 type Props = {
@@ -36,7 +37,9 @@ const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
 
         const newTrip = new Trip(1, state.name, state.date.toString(), users, []);
         const response = await ApiService.createTrip(newTrip);
-    
+        show = false;
+
+        await hide();
     }
 
 
@@ -44,7 +47,6 @@ const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
         <Modal 
             show={show}
             onHide = {hide}
-            backdrop="static"
         >
             <Modal.Header >
                 <Modal.Title>Add new Trip</Modal.Title>
