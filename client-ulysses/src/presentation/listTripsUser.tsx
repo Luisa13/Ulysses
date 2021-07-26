@@ -1,15 +1,18 @@
 import React, {useState} from "react";
+import {useHistory} from "react-router-dom";
 import {Button, Card, Col, Container, Table, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import { Eye, PencilFill, Trash } from 'react-bootstrap-icons';
+import { AppIndicator, Eye, PencilFill, Trash } from 'react-bootstrap-icons';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../domain/components/authContext';
 import AddNewTripModal from "./use-cases/addTrip"
-
+import * as ApiService from '../util/ApiService';
 
   const ListTripsUser = () =>{
     
     const{ userInfo } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
+    const history = useHistory();
 
     const handleShow = () =>{
       setShowModal(true);
@@ -24,21 +27,36 @@ import AddNewTripModal from "./use-cases/addTrip"
 
       return dateFormat;
     }
+
+    const goToDetail = () =>{
+      history.push({pathname: "detailTripStages"});
+    }
+
+    const deleteTrip = async (trip_id: number) => {
+      const newListTrips = userInfo?.trips.filter(trip =>trip.id != trip_id);
+
+      const user_obj = {
+        id: userInfo?.id,
+        name: userInfo?.name,
+        surname: userInfo?.surname,
+        email: userInfo?.email,
+        password: userInfo?.password,
+        role: userInfo?.role,
+        trips: newListTrips
+      }
+      await ApiService.updateUser(user_obj).then( res =>{
+        const response =  ApiService.deleteTrip(trip_id);
+      });
+      
+      toast.success("Trip removed!");
+    }
   
-
-    
-    console.log(userInfo?.trips);
-    const datestr = "" + userInfo?.trips[0].date;
-    const date = new Date(datestr.toString());
-    
-    console.log( date.getUTCMonth() );
-
 
     return (
         <>
           <Container>
+          <Row><h1>Trip List</h1></Row>
           <Row className="justify-content-md-center">
-          <h3>Trip List</h3>
           <Col>
           <Card><Card.Body>
           <Table responsive="sm">
@@ -60,9 +78,9 @@ import AddNewTripModal from "./use-cases/addTrip"
                       <td>{trip.stages.length} users</td>
 
                       <td>
-                        <Button variant="light" href="#" ><Eye color="royalblue" size={25} /></Button>{' '}
+                        <Button variant="light" href="#"  onClick ={goToDetail}><Eye color="royalblue" size={25} /></Button>{' '}
                         <Button variant="light" href="#"><PencilFill color="royalblue" size={25} /></Button>{' '}
-                        <Button variant="light" href="#"><Trash color="royalblue" size={25} /></Button>{' '}
+                        <Button variant="light" href="#"><Trash color="royalblue" onClick = {()=>deleteTrip(trip.id)} size={25} /></Button>{' '}
                       </td>
                   </tr>
                 ))
@@ -80,6 +98,9 @@ import AddNewTripModal from "./use-cases/addTrip"
           show = {showModal}
           hide = {() => setShowModal(false)}
         > </AddNewTripModal>
+      <Toaster 
+      position="bottom-right"
+      reverseOrder={false}/>
 
       </Container>
     

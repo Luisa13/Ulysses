@@ -56,3 +56,15 @@ export const getUser = async (token: string) => {
     return response.json();
   }
 
+
+  export const deleteTrip = async (id_trip: number) =>{
+    const response = await fetch(`${API_BASE_URL}/trip/${id_trip}`, {
+      method: 'DELETE',
+      headers: {
+        ...jsonHeader
+      },
+    });
+
+    return response.json();
+  }
+
