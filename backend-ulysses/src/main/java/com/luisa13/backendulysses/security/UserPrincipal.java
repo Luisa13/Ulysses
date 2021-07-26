@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.luisa13.backendulysses.model.User;
 
@@ -42,7 +43,9 @@ public class UserPrincipal implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return this.user.getPassword();
+		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String password = passwordEncoder.encode(this.user.getPassword());
+		return password;
 	}
 
 	@Override

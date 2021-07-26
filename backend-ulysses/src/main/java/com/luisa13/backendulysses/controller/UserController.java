@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.luisa13.backendulysses.model.User;
 import com.luisa13.backendulysses.service.UserService;
@@ -68,6 +69,11 @@ public class UserController {
 	public ResponseEntity<String> updateUSer(@RequestBody User user) {
 		HttpStatus response;
 		try {
+			/*User oldUser = userService.findUserById(user.getId());
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+			if( encoder.matches(oldUser.getPassword(), user.getPassword()) )
+				user.setPassword(oldUser.getPassword());*/
+			
 			this.userService.updateUser(user);
 			response = HttpStatus.OK;
 		}catch(RuntimeException ex) {
