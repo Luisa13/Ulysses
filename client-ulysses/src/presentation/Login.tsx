@@ -8,8 +8,6 @@ import * as Yup from 'yup';
 
 import * as  ApiService from "../util/ApiService";
 import { AuthContext } from '../domain/components/authContext';
-import useAppContext from '../hooks/useAppContext';
-import User from '../domain/entity/User';
 
 type LoginFormFields = {
   username: string
@@ -19,10 +17,7 @@ type LoginFormFields = {
 const Login: React.FC = () => {
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState<string>('');
-  //const [username, setUsername] = useState('');
-  //const [password, setPassword] = useState('');
   const{ setUserInfo } = React.useContext(AuthContext);
-  const {currentUser, setCurrentUser} = useAppContext();
 
   // Just for form validation
   const form: {initialValues: LoginFormFields, validationSchema: Yup.AnyObjectSchema} = {
@@ -41,6 +36,7 @@ const Login: React.FC = () => {
     try {
       console.log("Login... ");
       const token = await ApiService.login(values.username, values.password);
+      localStorage.setItem("token", token.accessToken);
       const user = await ApiService.getUser(token.accessToken)
       .then(res =>{
           if('id' in res){
