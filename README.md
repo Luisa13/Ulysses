@@ -4,12 +4,15 @@ Web application to plan your trips in a very visual way developed following CLEA
 > This project is under construction
 
 ## Requirements & Technologies
+**Backend**
 * Java 11
 * Spring 4.11.0
 * Spring Security that utilizes JSON Web Tokens
 * Spring Data JPA
 * Maven 3.6.3
 * JUnit 5
+
+**FrontEnd**
 * [Formik](https://formik.org) 
 * React 
 * Typescript
