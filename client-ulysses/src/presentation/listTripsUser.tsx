@@ -13,8 +13,27 @@ import Trip from "../domain/entity/Trip";
     
     const{ userInfo } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
-    const [updatedTrips, setUpdatedTrips] = useState<Trip[]>(userInfo?.trips as Trip[]);
+    const [updatedTrips, setUpdatedTrips] = useState<Trip[]>([]);
     const history = useHistory();
+
+
+    useEffect( () =>{
+        console.log("eyy");
+        const token = localStorage.getItem("token");
+        const initialData = async () => {
+          try{
+            const u = await ApiService.getUser(token as string)
+            .then(user =>{
+              setUpdatedTrips(user.trips);
+            });
+          }catch(error){
+            console.log(error);
+          }
+        }
+        initialData().then();
+
+        
+    }, [userInfo] );
 
     const handleShow = () =>{
       setShowModal(true);
