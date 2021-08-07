@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Button, Form, Modal} from 'react-bootstrap';
 import { Field, FormikProps } from 'formik';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../../domain/components/authContext';
 import * as ApiService from '../../util/ApiService'
@@ -36,9 +37,10 @@ const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
         users.push(userInfo?.id)
 
         const newTrip = new Trip(1, state.name, state.date.toString(), users, []);
-        const response = await ApiService.createTrip(newTrip);
+        const response = await ApiService.createTrip(newTrip)
+        .then(res =>{toast.success("New trip added!");})
+        .catch(error =>{toast.error("Some error ocurred trying to add a trip")});
         show = false;
-
         await hide();
     }
 

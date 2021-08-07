@@ -11,14 +11,14 @@ import Trip from "../domain/entity/Trip";
 
   const ListTripsUser:React.FC = () =>{
     
-    const{ userInfo } = React.useContext(AuthContext);
+    const{ userInfo, setUserInfo } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
     const [updatedTrips, setUpdatedTrips] = useState<Trip[]>([]);
     const history = useHistory();
 
 
     useEffect( () =>{
-        console.log("eyy");
+
         const token = localStorage.getItem("token");
         const initialData = async () => {
           try{
@@ -32,8 +32,7 @@ import Trip from "../domain/entity/Trip";
         }
         initialData().then();
 
-        
-    }, [userInfo] );
+    }, [userInfo, showModal] );
 
     const handleShow = () =>{
       setShowModal(true);

@@ -1,5 +1,6 @@
 
 import Trip from "../domain/entity/Trip";
+import User from "../domain/entity/User";
 
 const API_BASE_URL = "http://localhost:8080";
 
@@ -21,7 +22,7 @@ export const jsonHeader = {
   };
 
 
-export const getUser = async (token: string) => {
+export const getUser = async (token: string): Promise<User> => {
     const response = await fetch(`${API_BASE_URL}/auth/getCurrentUser`, {
       method: 'GET',
       headers: {
