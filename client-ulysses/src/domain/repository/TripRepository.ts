@@ -7,7 +7,6 @@ class TripDTO{
     id: number = 0;
     name: string = "";
     date: string = "";
-    //users: Set<number> = new Set<number>();
     users: number[] = [];
     stages: Stage[] = [];
 }

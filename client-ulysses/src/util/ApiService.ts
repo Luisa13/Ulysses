@@ -1,4 +1,6 @@
 
+import Trip from "../domain/entity/Trip";
+
 const API_BASE_URL = "http://localhost:8080";
 
 export const login = async (username:string, password: string) => {
@@ -31,7 +33,6 @@ export const getUser = async (token: string) => {
 
 
   export const updateUser = async (user:object) =>{
-
     const response = await fetch(`${API_BASE_URL}/user/updateuser`, {
       method: 'PUT',
       headers: {
@@ -39,12 +40,11 @@ export const getUser = async (token: string) => {
       },
       body: JSON.stringify(user),
     });
-    return response.json();
+    return response;
   }
 
 
-  export const createTrip = async (trip: object) =>{
-    console.log(JSON.stringify(trip));
+  export const createTrip = async (trip: object): Promise<Trip> =>{
     const response = await fetch(`${API_BASE_URL}/trip/`, {
       method: 'POST',
       headers: {
@@ -65,6 +65,6 @@ export const getUser = async (token: string) => {
       },
     });
 
-    return response.json();
+    return response;
   }
 

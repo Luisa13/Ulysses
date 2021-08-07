@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {Button, Card, Col, Container, Table, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { AppIndicator, Eye, PencilFill, Trash } from 'react-bootstrap-icons';
@@ -7,11 +7,13 @@ import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../domain/components/authContext';
 import AddNewTripModal from "./use-cases/addTrip"
 import * as ApiService from '../util/ApiService';
+import Trip from "../domain/entity/Trip";
 
-  const ListTripsUser = () =>{
+  const ListTripsUser:React.FC = () =>{
     
     const{ userInfo } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
+    const [updatedTrips, setUpdatedTrips] = useState<Trip[]>(userInfo?.trips as Trip[]);
     const history = useHistory();
 
     const handleShow = () =>{
@@ -33,7 +35,7 @@ import * as ApiService from '../util/ApiService';
     }
 
     const deleteTrip = async (trip_id: number) => {
-      const newListTrips = userInfo?.trips.filter(trip =>trip.id != trip_id);
+      const newListTrips = updatedTrips.filter(trip =>trip.id != trip_id);
 
       const user_obj = {
         id: userInfo?.id,
@@ -44,11 +46,14 @@ import * as ApiService from '../util/ApiService';
         role: userInfo?.role,
         trips: newListTrips
       }
-      await ApiService.updateUser(user_obj).then( res =>{
-        const response =  ApiService.deleteTrip(trip_id);
-      });
       
-      toast.success("Trip removed!");
+      await ApiService.updateUser(user_obj);
+      await ApiService.deleteTrip(trip_id)
+        .then( res =>{
+          setUpdatedTrips(newListTrips as Trip[]);
+          toast.success("Trip removed!");
+      });
+
     }
   
 
@@ -71,7 +76,7 @@ import * as ApiService from '../util/ApiService';
             <tbody>
     
               {
-                userInfo?.trips.map( (trip:any)=>(
+                updatedTrips && updatedTrips.map( (trip:any)=>(
                   <tr key={trip.id}>
                       <td>{trip.name}</td>
                       <td>{geDateFormat(trip.date)}</td>
