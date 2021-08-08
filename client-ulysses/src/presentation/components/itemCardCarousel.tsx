@@ -3,6 +3,7 @@ import {Button, Col, Container, Card, Row, Form, Navbar} from 'react-bootstrap';
 
 import 'react-alice-carousel/lib/alice-carousel.css';
 import {CalendarEvent, HouseDoor, Telephone, Envelope, PencilFill, Trash} from 'react-bootstrap-icons';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 type Props = {
@@ -15,6 +16,17 @@ type Props = {
 }
 
 const ItemCard : React.FC<Props> = ({title, address, mail, telephone})=>{
+
+    const handleDeleteStage = async () =>{
+        console.log("deleting stage");
+        await toast.success("Stage deleted");
+    }
+
+    const handleEditStage = () =>{
+        console.log("modifying stage");
+    }
+
+
     return(
         
                             <Row>
@@ -70,8 +82,8 @@ const ItemCard : React.FC<Props> = ({title, address, mail, telephone})=>{
                                     </Card.Body>
                                     <Card.Footer>
                                         <Row className="justify-content-md-center">
-                                        <Col xs lg="2"><Button variant="light" href="#"><PencilFill color="royalblue" size={25} /></Button></Col>
-                                        <Col xs lg="2"><Button variant="light" href="#"><Trash color="royalblue"  size={25} /></Button></Col>
+                                        <Col xs lg="2"><Button variant="light" href="#" onClick = {handleEditStage}><PencilFill color="royalblue" size={25} /></Button></Col>
+                                        <Col xs lg="2"><Button variant="light" href="#" onClick = {handleDeleteStage}><Trash color="royalblue"  size={25} /></Button></Col>
                                         </Row>
                                     </Card.Footer>
                                     </Card>

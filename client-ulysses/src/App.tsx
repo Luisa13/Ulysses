@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {AuthProvider} from "./domain/components/authContext";
 import {AuthRouteComponent} from "./domain/components/authRoute";
-import Header from './presentation/headerBar';
+import Header from './presentation/components/headerBar';
 
 import ListTripsUser from "./presentation/listTripsUser"; 
 import Login from './presentation/Login';
@@ -35,7 +35,7 @@ function App() {
               </AuthRouteComponent>
 
               <AuthRouteComponent path = "/detailTripStages">
-                  <DetailTripStages/>
+                  <Route exact path="/detailTripStages" component={DetailTripStages}/>
               </AuthRouteComponent>
 
             </Switch>
