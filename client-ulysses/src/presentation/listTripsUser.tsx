@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {Button, Card, Col, Container, Table, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import { AppIndicator, Eye, PencilFill, Trash } from 'react-bootstrap-icons';
+import {Eye, PencilFill, Trash } from 'react-bootstrap-icons';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../domain/components/authContext';
@@ -49,7 +49,10 @@ import Trip from "../domain/entity/Trip";
     }
 
     const goToDetail = () =>{
-      history.push({pathname: "detailTripStages"});
+      history.push({
+        pathname: "detailTripStages",
+        state:{stageName: "bla"}
+      });
     }
 
     const deleteTrip = async (trip_id: number) => {
