@@ -9,14 +9,13 @@ import DetailTripStages from './detailTripStages';
 import AddNewTripModal from "./use-cases/addTrip"
 import * as ApiService from '../util/ApiService';
 import Trip from "../domain/entity/Trip";
-import Switch from "react-bootstrap/esm/Switch";
 
   const ListTripsUser:React.FC = () =>{
     
     const{ userInfo, setUserInfo } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
     const [updatedTrips, setUpdatedTrips] = useState<Trip[]>([]);
-    const history = useHistory();
+    //const history = useHistory();
 
 
     useEffect( () =>{
@@ -50,12 +49,12 @@ import Switch from "react-bootstrap/esm/Switch";
       return dateFormat;
     }
 
-    const goToDetail = () =>{
+    /*const goToDetail = () =>{
       history.push({
         pathname: "detailTripStages",
         state:{stageName: "bla"}
       });
-    }
+    }*/
 
     const deleteTrip = async (trip_id: number) => {
       const newListTrips = updatedTrips.filter(trip =>trip.id != trip_id);

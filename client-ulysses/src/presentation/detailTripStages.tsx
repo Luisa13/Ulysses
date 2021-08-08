@@ -4,18 +4,33 @@ import ItemCard from './components/itemCardCarousel';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import {PlusCircleFill} from 'react-bootstrap-icons';
+import * as ApiService from '../util/ApiService';
 
 import { AuthContext } from '../domain/components/authContext';
 import { useLocation} from "react-router-dom";
+import Trip from "../domain/entity/Trip";
 
 
 
 const DetailTripStages: React.FC = () =>{
     const{ userInfo } = React.useContext(AuthContext);
-    const idStage = useLocation().state;
-    
-    useEffect(() =>{
+    const idTrip = useLocation().state;
+    const [trip, setTrip] = useState<Trip>();
 
+    useEffect(() =>{
+        const token = localStorage.getItem("token");
+        const initialData = async () => {
+          try{
+            const u = await ApiService.getUser(token as string)
+            .then(user =>{
+                const currentTrip = user.trips.filter(trip => trip.id === idTrip )[0];
+                setTrip(currentTrip);
+            });
+          }catch(error){
+            console.log(error);
+          }
+        }
+        initialData().then();
     });
     //const [index, setIndex] = useState(0);
 
@@ -26,7 +41,7 @@ const DetailTripStages: React.FC = () =>{
 
     return(
         <Container >
-            <Row><h1>{idStage as string}</h1></Row>
+            <Row><h1>{trip?.name as string}</h1></Row>
             <Row className="justify-content-md-center">
                     <Card>
                         <Card.Body>This is some text within a card body.</Card.Body>
