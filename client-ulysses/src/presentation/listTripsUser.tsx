@@ -5,7 +5,7 @@ import {Eye, PencilFill, Trash } from 'react-bootstrap-icons';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../domain/components/authContext';
-import DetailTripStages from './detailTripStages';
+//import DetailTripStages from './detailTripStages';
 import AddNewTripModal from "./use-cases/addTrip"
 import * as ApiService from '../util/ApiService';
 import Trip from "../domain/entity/Trip";
@@ -108,7 +108,8 @@ import Trip from "../domain/entity/Trip";
                         <Link to={{
                           pathname:`/detailTripStages/`,
                           state: trip.id
-                        }}><Eye color="royalblue" size={25} /></Link>
+                        }}><Eye color="royalblue" size={25} />
+                        </Link>
                         <Button variant="light" href="#"><PencilFill color="royalblue" size={25} /></Button>{' '}
                         <Button variant="light" href="#"><Trash color="royalblue" onClick = {()=>deleteTrip(trip.id)} size={25} /></Button>{' '}
                       </td>
