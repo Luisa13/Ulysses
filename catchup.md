@@ -8,18 +8,20 @@
 REFERENCES
 - [Authentication with react + spring](https://dzone.com/articles/integrating-spring-boot-and-react-with-spring-secu-1)
 - [react + spring login](https://stormpath.com/blog/spring-boot-stormpath-react-sdk)
-- 
+
+
 **Maps**
--[React Simple Maps](https://www.react-simple-maps.io)
--[GeoCode on React](https://www.npmjs.com/package/react-geocode) to get coordinates from an address
--[Example of React-simple-maps](https://codesandbox.io/s/1btd7?file=/src/MapChart.js:1233-2499)
--[Google Maps API with React](https://medium.com/@jacolam/using-google-maps-api-with-react-js-c4e2420d6d09)
+- [React Simple Maps](https://www.react-simple-maps.io)
+- [GeoCode on React](https://www.npmjs.com/package/react-geocode) to get coordinates from an address
+- [Example of React-simple-maps](https://codesandbox.io/s/1btd7?file=/src/MapChart.js:1233-2499)
+- [Google Maps API with React](https://medium.com/@jacolam/using-google-maps-api-with-react-js-c4e2420d6d09)
 
 **Security**
 - [Basic pring Boot Security Authentication with JPA](https://www.codejava.net/frameworks/spring-boot/spring-boot-security-authentication-with-jpa-hibernate-and-mysql)
 - [Tutorial for the client side](https://lemoncode.net/lemoncode-blog/2020/12/20/react-router-y-rutas-autorizadas-i) (in spanish)
 - [Spring Boot security best practices](https://snyk.io/blog/spring-boot-security-best-practices/)
 - [CORS config filter](https://stackoverflow.com/questions/40286549/spring-boot-security-cors)
+- [Simple React Router tutorial](https://lemoncode.net/lemoncode-blog/2020/12/20/react-router-y-rutas-autorizadas-i)
 
 **React API calls**
 - [React components](https://reactjs.org/docs/react-component.html)
