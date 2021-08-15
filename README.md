@@ -1,7 +1,10 @@
+> :construction: WARNING: :construction:
+> 
+> This project is under construction
+
 # Ulysses
 Web application to plan your trips in a very visual way developed following CLEAN architecture.
-> WARNING:
-> This project is under construction
+
 
 ## Requirements & Technologies
 **Backend**
