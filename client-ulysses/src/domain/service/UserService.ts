@@ -4,6 +4,7 @@ import IUserRepository from '../repository/IUserRepository';
 
 export interface IUserService{
     getUsers():Promise<User[]>;
+    updateUser(user:object): Promise<Response>
 }
 
 export default class UserService implements IUserService{
