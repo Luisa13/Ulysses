@@ -33,7 +33,7 @@ export const getUser = async (token: string): Promise<User> => {
   }
 
 
-  export const updateUser = async (user:object) =>{
+  /*export const updateUser = async (user:object) =>{
     const response = await fetch(`${API_BASE_URL}/user/updateuser`, {
       method: 'PUT',
       headers: {
@@ -42,7 +42,7 @@ export const getUser = async (token: string): Promise<User> => {
       body: JSON.stringify(user),
     });
     return response;
-  }
+  }*/
 
 
   export const createTrip = async (trip: object): Promise<Trip> =>{

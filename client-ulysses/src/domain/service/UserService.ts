@@ -17,4 +17,8 @@ export default class UserService implements IUserService{
     async getUsers():Promise<User[]>{
         return this.userRepo.getUsers();
     }
+
+    async updateUser(user:object): Promise<Response>{
+        return this.userRepo.updateUser(user);
+    }
 }
