@@ -9,6 +9,7 @@ import { AuthContext } from '../domain/components/authContext';
 import AddNewTripModal from "./use-cases/addTrip"
 import * as ApiService from '../util/ApiService';
 import Trip from "../domain/entity/Trip";
+import * as Provider from '../util/Provider';
 
   const ListTripsUser:React.FC = () =>{
     
@@ -16,6 +17,8 @@ import Trip from "../domain/entity/Trip";
     const [showModal, setShowModal] = useState(false);
     const [updatedTrips, setUpdatedTrips] = useState<Trip[]>([]);
     //const history = useHistory();
+    const blocUser = Provider.ProviderUsers();
+    const blocTrip = Provider.ProviderTrips();
 
 
     useEffect( () =>{
@@ -69,8 +72,9 @@ import Trip from "../domain/entity/Trip";
         trips: newListTrips
       }
       
-      await ApiService.updateUser(user_obj);
-      await ApiService.deleteTrip(trip_id)
+      //await ApiService.updateUser(user_obj);
+      blocUser.updateUser(user_obj);
+      blocTrip.deleteTrip(trip_id)
         .then( res =>{
           setUpdatedTrips(newListTrips as Trip[]);
           toast.success("Trip removed!");
