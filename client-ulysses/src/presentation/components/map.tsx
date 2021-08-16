@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {ComposableMap, Geographies, Geography, Marker, Point} from "react-simple-maps";
+import Geocode from "react-geocode";
+import PointMap from "../../domain/entity/PointMap";
   
 const geoUrl =
 "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const markers = [
+/*const markers = [
 {
   markerOffset: -30,
   name: "Buenos Aires",
@@ -21,9 +23,36 @@ const markers = [
 { markerOffset: 15, name: "Montevideo", coordinates: [-56.1645, -34.9011] },
 { markerOffset: 15, name: "Caracas", coordinates: [-66.9036, 10.4806] },
 { markerOffset: 15, name: "Lima", coordinates: [-77.0428, -12.0464] }
-];
-const Map: React.FC = () =>{
+];*/
 
+type Props = {
+  placeName: string;
+}
+const Map: React.FC<Props> = ({placeName}) =>{
+  
+  const [markers, setMarkers] = useState< PointMap[] >([]);
+
+  useEffect(()=>{
+    console.log("Looking for " + placeName);
+    getCoordinates();
+  }, [markers]); 
+
+  const getCoordinates = async ()=>{
+    Geocode.fromAddress(placeName)
+    .then( response =>{
+      const { lat, lng } = response.results[0].geometry.location;
+      console.log(lat, lng);
+      const coords = [lat, lng] as number[];
+      const pointMarker = new PointMap(placeName, -30, coords);
+      setMarkers([pointMarker]);
+    })
+    .catch(ex =>{
+      console.error(ex);
+    });
+
+  
+  }
+  
 
     return(
         <ComposableMap
@@ -47,7 +76,7 @@ const Map: React.FC = () =>{
             ))
         }
       </Geographies>
-      {markers.map(({ name, coordinates, markerOffset }) => (
+      {markers && markers.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates as Point}>
           <g
             fill="none"
