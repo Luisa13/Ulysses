@@ -45,7 +45,7 @@ export const getUser = async (token: string): Promise<User> => {
   }*/
 
 
-  export const createTrip = async (trip: object): Promise<Trip> =>{
+ /* export const createTrip = async (trip: object): Promise<Trip> =>{
     const response = await fetch(`${API_BASE_URL}/trip/`, {
       method: 'POST',
       headers: {
@@ -55,10 +55,10 @@ export const getUser = async (token: string): Promise<User> => {
     });
 
     return response.json();
-  }
+  }*/
 
 
-  export const deleteTrip = async (id_trip: number) =>{
+ /* export const deleteTrip = async (id_trip: number) =>{
     const response = await fetch(`${API_BASE_URL}/trip/${id_trip}`, {
       method: 'DELETE',
       headers: {
@@ -67,5 +67,5 @@ export const getUser = async (token: string): Promise<User> => {
     });
 
     return response;
-  }
+  }*/
 

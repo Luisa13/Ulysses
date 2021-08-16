@@ -13,6 +13,7 @@ class TripDTO{
 
 export default class TripRepository implements ITripRepository{
     baseURL = "http://localhost:8080/trip";
+
     async getTrips(): Promise<Trip[]> {
         const localURL = this.baseURL + "/allTrips";
         const response = await fetch(localURL);
@@ -20,6 +21,33 @@ export default class TripRepository implements ITripRepository{
 
         return jsonData.map((trip: TripDTO) => new Trip(trip.id, trip.name, trip.date, trip.users, trip.stages));
     }
+
+    async deleteTrip(id_trip: number): Promise<Response>{
+        const response = await fetch(`${this.baseURL}/${id_trip}`, {
+          method: 'DELETE',
+          headers: {
+            ...this.jsonHeader
+          },
+        });
     
+        return response;
+    }
+
+    async createTrip(trip: object): Promise<Trip>{
+        const response = await fetch(`${this.baseURL}/`, {
+          method: 'POST',
+          headers: {
+            ...this.jsonHeader
+          },
+          body: JSON.stringify(trip),
+        });
+    
+        return response.json();
+      }
+
+
+    jsonHeader = {
+        'Content-Type': 'application/json;'
+    };
     
 }

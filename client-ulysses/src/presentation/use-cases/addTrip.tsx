@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../domain/components/authContext';
 import * as ApiService from '../../util/ApiService'
 //import Stage from '../../domain/entity/Stage';
+import * as Provider from '../../util/Provider';
 import Trip from '../../domain/entity/Trip';
 //import { render } from '@testing-library/react';
 
@@ -19,6 +20,7 @@ type Props = {
 const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
     const{ userInfo } = React.useContext(AuthContext);
     const[state, setState] = useState({name: "", date: new Date()});
+    const blocTrip = Provider.ProviderTrips();
 
 
     const handleInputField = (event: React.ChangeEvent<HTMLInputElement>) =>{
@@ -37,7 +39,8 @@ const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
         users.push(userInfo?.id)
 
         const newTrip = new Trip(1, state.name, state.date.toString(), users, []);
-        const response = await ApiService.createTrip(newTrip)
+        
+        const response = blocTrip.createTrip(newTrip)
         .then(res =>{toast.success("New trip added!");})
         .catch(error =>{toast.error("Some error ocurred trying to add a trip")});
         show = false;

@@ -16,4 +16,12 @@ export default class TripService implements ITripService{
         return this.tripRepo.getTrips();
     }
 
+    deleteTrip(id_trip: number): Promise<Response>{
+        return this.tripRepo.deleteTrip(id_trip);
+    }
+
+    createTrip(trip: object): Promise<Trip>{
+        return this.tripRepo.createTrip(trip)
+    }
+
 }
