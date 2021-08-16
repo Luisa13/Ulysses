@@ -3,6 +3,8 @@ import ITripRepository from "../repository/ITripRepository";
 
 export interface ITripService{
     getTrips():Promise<Trip[]>;
+    deleteTrip(id_trip: number): Promise<Response>
+    createTrip(trip: object): Promise<Trip>
 }
 
 export default class TripService implements ITripService{
