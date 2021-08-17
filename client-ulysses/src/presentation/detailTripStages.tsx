@@ -6,6 +6,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import {PlusCircleFill} from 'react-bootstrap-icons';
 import * as ApiService from '../util/ApiService';
 import {PencilFill, Trash} from 'react-bootstrap-icons';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../domain/components/authContext';
 import { useLocation} from "react-router-dom";
@@ -60,11 +61,12 @@ const DetailTripStages: React.FC = () =>{
                     <AliceCarousel>
                         <>
                         <ItemCard
-                            title = "Stage 1"
+                            place = "Stage 1"
                             address = "C/ blablablabla"
                             telephone = "958 131736"
                             mail = "example@domain.com"
                             edit = {false}
+                            onChangeInput = {handleSelect}
                         />
                         <Row>
                             <Col></Col>
@@ -81,11 +83,12 @@ const DetailTripStages: React.FC = () =>{
                         </Row>
                                     </>
                         <ItemCard
-                            title = "Stage 2"
+                            place = "Stage 2"
                             address = ""
                             telephone = ""
                             mail = "example@domain.com"
                             edit = {false}
+                            onChangeInput = {handleSelect}
                         />
                     </AliceCarousel>
             </Row>
@@ -98,6 +101,10 @@ const DetailTripStages: React.FC = () =>{
                 show = {showModal}
                 hide = {() => setShowModal(false)}
             ></AddNewStageModal>
+
+            <Toaster 
+                position="bottom-right"
+                reverseOrder={false}/>
 
         </Container>
 

@@ -7,26 +7,26 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 type Props = {
-    title: string,
+    place: string,
     //dateStart: Date,
     //dateEnd: Date
     address: string | "",
     telephone: string | "",
     mail: string | "example@domain.com",
-    edit: boolean | false
+    edit: boolean | false,
+    onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const ItemCard: React.FC<Props> = ({ edit, title, address, mail, telephone }) => {
+const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, onChangeInput}) => {
 
-    const handleDeleteStage = async () => {
+    /*const handleDeleteStage = async () => {
         console.log("deleting stage");
         await toast.success("Stage deleted");
     }
 
     const handleEditStage = () => {
         console.log("modifying stage");
-    }
-
+    }*/
 
     return (
 
@@ -40,15 +40,19 @@ const ItemCard: React.FC<Props> = ({ edit, title, address, mail, telephone }) =>
                 <Card style={{ height: '15rem' }}>
                     <Card.Header>
                         <Row>
-                            <Col md={5}> <Card.Title>{title}</Card.Title></Col>
+                            <Col md={5}> 
+                            <Card.Title>
+                                <Form.Control onChange = {onChangeInput} name = "place" type={edit ? "text" : ""} readOnly={!edit} plaintext={!edit} placeholder="Place"  defaultValue={place}/>
+                            </Card.Title>
+                            </Col>
                             <Col>
                                 <Row>
                                     <Form.Label column sm="1"><CalendarEvent color="black" size={25} /> </Form.Label>
                                     <Col>
-                                        <Row>
-                                            <Col md={6}><Form.Control type={edit ? "date" : ""} readOnly={!edit} plaintext={!edit} name="date" placeholder="StartDate" /> </Col>
+                                        <Row >
+                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateIn" type={edit ? "date" : ""} readOnly={!edit} plaintext={!edit} placeholder="StartDate" /> </Col>
 
-                                            <Col md={6}><Form.Control type={edit ? "date" : ""} readOnly={!edit} plaintext={!edit} name="date" placeholder="EndDate" /></Col>
+                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateOut" type={edit ? "date" : ""} readOnly={!edit} plaintext={!edit} placeholder="EndDate" /></Col>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -66,14 +70,14 @@ const ItemCard: React.FC<Props> = ({ edit, title, address, mail, telephone }) =>
                                             <Envelope color="royalblue" size={25} />
                                         </Form.Label>
                                         <Col sm="5">
-                                            <Form.Control type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={mail} />
+                                            <Form.Control onChange = {onChangeInput} name = "email" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={mail} />
                                         </Col>
 
                                         <Form.Label column sm="1">
                                             <Telephone color="royalblue" size={25} />
                                         </Form.Label>
                                         <Col sm="5">
-                                            <Form.Control type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={telephone} />
+                                            <Form.Control onChange = {onChangeInput} name = "telephone" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={telephone} />
                                         </Col>
                                     </Form.Group>
 
@@ -84,7 +88,7 @@ const ItemCard: React.FC<Props> = ({ edit, title, address, mail, telephone }) =>
                                             </Form.Label>
                                         </Col>
                                         <Col sm="10">
-                                            <Form.Control type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={address} />
+                                            <Form.Control onChange = {onChangeInput} name = "place" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={address} />
                                         </Col>
                                     </Form.Group>
                                 </Col>
