@@ -45,6 +45,18 @@ export default class TripRepository implements ITripRepository{
         return response.json();
       }
 
+    async updateTrip(trip: object): Promise<Response>{
+      const localUrl = this.baseURL + "/updateTrip";
+        const response = await fetch(localUrl, {
+          method: 'PUT',
+          headers: {
+            ...this.jsonHeader
+          },
+          body: JSON.stringify(trip),
+        });
+        return response;
+      }
+
 
     jsonHeader = {
         'Content-Type': 'application/json;'

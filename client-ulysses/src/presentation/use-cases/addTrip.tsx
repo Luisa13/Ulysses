@@ -39,7 +39,6 @@ const AddNewTripModal:  React.FC<Props> = ({show, hide}) =>{
         users.push(userInfo?.id)
 
         const newTrip = new Trip(1, state.name, state.date.toString(), users, []);
-        
         const response = blocTrip.createTrip(newTrip)
         .then(res =>{toast.success("New trip added!");})
         .catch(error =>{toast.error("Some error ocurred trying to add a trip")});

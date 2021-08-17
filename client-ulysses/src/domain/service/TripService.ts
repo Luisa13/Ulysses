@@ -26,4 +26,8 @@ export default class TripService implements ITripService{
         return this.tripRepo.createTrip(trip)
     }
 
+    updateTrip(trip:object): Promise<Response>{
+        return this.tripRepo.updateTrip(trip);
+    }
+
 }
