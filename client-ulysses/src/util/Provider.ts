@@ -4,6 +4,8 @@ import StageService from "../domain/service/StageService";
 import StageRepository from "../domain/repository/StageRepository";
 import TripService from "../domain/service/TripService";
 import TripRepository from "../domain/repository/TripRepository";
+import AuthService from "../domain/service/AuthService";
+import AuthRepository from "../domain/repository/AuthRepository";
 
 export function ProviderUsers(): UserService{
     const userRepository = new UserRepository();
@@ -24,4 +26,11 @@ export function ProviderTrips(): TripService{
     const tripService = new TripService(tripRepository);
 
     return tripService;
+}
+
+export function ProviderAuth(): AuthService{
+    const authRepository = new AuthRepository();
+    const authService = new AuthService(authRepository);
+
+    return authService;
 }
