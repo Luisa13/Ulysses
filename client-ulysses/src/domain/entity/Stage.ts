@@ -19,8 +19,8 @@ export default class Stage{
         this.image = image;
     }*/
 
-    setDescription(escription: string){
-        this.description = this.description;
+    setDescription(description: string){
+        this.description = description;
     }
 
 }

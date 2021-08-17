@@ -21,4 +21,33 @@ export default class StageRepository implements IStageRepository{
 
     }
 
+    async createNewStage(stage: object): Promise<Stage>{
+        const localURL = this.baseURL + "/";
+        const response = await fetch(localURL, {
+            method: 'POST',
+          headers: {
+            ...this.jsonHeader
+          },
+          body: JSON.stringify(stage),
+        });
+
+        return response.json();
+    }
+
+    
+    async delete(id_stage: number): Promise<Response>{
+        const response = await fetch(`${this.baseURL}/${id_stage}`, {
+            method: 'DELETE',
+            headers: {
+              ...this.jsonHeader
+            },
+          });
+      
+          return response;
+    }
+
+    jsonHeader = {
+        'Content-Type': 'application/json;'
+    };
+
 }
