@@ -11,7 +11,8 @@ import { AuthContext } from '../domain/components/authContext';
 import { useLocation} from "react-router-dom";
 import Trip from "../domain/entity/Trip";
 import AddNewStageModal from './use-cases/addStage';
-import Map from './components/map';
+//import MapReact from './components/mapReact';
+import MapChart from './components/MapChart';
 
 
 
@@ -51,9 +52,7 @@ const DetailTripStages: React.FC = () =>{
             <Row><h1>{trip?.name as string}</h1></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
-                        <Map
-                            placeName = {trip?.name as string}
-                        />
+                        <MapChart/>
                     </Card>
             </Row>
             <br/>

@@ -1,5 +1,5 @@
 
-import Trip from "../domain/entity/Trip";
+//import Trip from "../domain/entity/Trip";
 import User from "../domain/entity/User";
 
 const API_BASE_URL = "http://localhost:8080";
