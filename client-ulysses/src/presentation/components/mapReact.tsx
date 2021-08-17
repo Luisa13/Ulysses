@@ -28,7 +28,7 @@ const geoUrl =
 type Props = {
   placeName: string;
 }
-const Map: React.FC<Props> = ({placeName}) =>{
+const MapReact: React.FC<Props> = ({placeName}) =>{
   
   const [markers, setMarkers] = useState< PointMap[] >([]);
 
@@ -56,10 +56,10 @@ const Map: React.FC<Props> = ({placeName}) =>{
 
     return(
         <ComposableMap
-      projection="geoAzimuthalEqualArea"
-      projectionConfig={{
-        rotate: [58, 20, 0],
-        scale: 400
+        projection="geoAzimuthalEqualArea"
+        projectionConfig={{
+          rotate: [58, 20, 0],
+          scale: 400
       }}
     >
       <Geographies geography={geoUrl}>
@@ -102,4 +102,4 @@ const Map: React.FC<Props> = ({placeName}) =>{
     );
 }
 
-export default Map;
+export default MapReact;
