@@ -19,10 +19,10 @@ export default class StageService implements IStageService{
     }
 
     async createNewStage(stage: object): Promise<Stage>{
-        return this.createNewStage(stage);
+        return this.stageRepo.createNewStage(stage);
     }
 
     async deleteStage(id_stage: number): Promise<Response>{
-        return this.deleteStage(id_stage);
+        return this.stageRepo.deleteStage(id_stage);
     }
 }

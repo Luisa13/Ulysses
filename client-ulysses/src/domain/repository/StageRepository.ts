@@ -35,7 +35,7 @@ export default class StageRepository implements IStageRepository{
     }
 
     
-    async delete(id_stage: number): Promise<Response>{
+    async deleteStage(id_stage: number): Promise<Response>{
         const response = await fetch(`${this.baseURL}/${id_stage}`, {
             method: 'DELETE',
             headers: {
