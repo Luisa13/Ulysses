@@ -26,7 +26,7 @@ public class StageService implements IStageService{
 	}
 
 	@Override
-	public void updateUSer(Stage stage) {
+	public void updateUser(Stage stage) {
 		this.stageRepo.findById(stage.getId()).orElseThrow();
 		this.stageRepo.save(stage);
 	}

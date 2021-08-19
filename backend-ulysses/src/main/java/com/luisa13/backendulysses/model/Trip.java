@@ -32,8 +32,8 @@ public class Trip {
 	@ManyToMany(mappedBy = "trips")
 	private Set<User>users = new HashSet<User>();
 
-	@OneToMany(mappedBy = "trip", orphanRemoval = true)
-	private List<Stage>stages = new ArrayList<Stage>();
+	@OneToMany(mappedBy = "trip", orphanRemoval = true, cascade = CascadeType.ALL)
+	private Set<Stage>stages = new HashSet<Stage>();
 	
 	public Trip() {}
 	
@@ -65,11 +65,11 @@ public class Trip {
 		this.date = date;
 	}
 	
-	public List<Stage> getStages(){
+	public Set<Stage> getStages(){
 		return this.stages;
 	}
 	
-	public void setStages(List<Stage> stages) {
+	public void setStages(Set<Stage> stages) {
 		this.stages = stages;
 	}
 	

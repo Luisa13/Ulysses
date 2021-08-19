@@ -8,7 +8,7 @@ class TripDTO{
     name: string = "";
     date: string = "";
     users: number[] = [];
-    stages: Stage[] = [];
+    //stages: Stage[] = [];
 }
 
 export default class TripRepository implements ITripRepository{
@@ -19,7 +19,7 @@ export default class TripRepository implements ITripRepository{
         const response = await fetch(localURL);
         const jsonData = await response.json();
 
-        return jsonData.map((trip: TripDTO) => new Trip(trip.id, trip.name, trip.date, trip.users, trip.stages));
+        return jsonData.map((trip: TripDTO) => new Trip(trip.id, trip.name, trip.date, trip.users));
     }
 
     async deleteTrip(id_trip: number): Promise<Response>{

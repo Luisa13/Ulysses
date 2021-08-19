@@ -2,6 +2,7 @@ package com.luisa13.backendulysses.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class TripDTO {
 	private String name;
 	private Date date;
 	private List<Long> usersId = new ArrayList<Long>();
-	private List<Stage> stages = new ArrayList<Stage>();
+	//private List<Stage> stages = new ArrayList<Stage>();
 	
 
 	public TripDTO(Long id, String name, Date date, List<Long> usersId) {
@@ -34,7 +35,7 @@ public class TripDTO {
 		
 		Trip newTrip = new Trip(this.getName());
 		newTrip.setDate(this.date);
-		newTrip.setStages(this.stages);
+		//newTrip.setStages(this.stages);
 		
 		return newTrip;
 	}
@@ -79,12 +80,12 @@ public class TripDTO {
 		this.usersId = usersId;
 	}
 	
-	public List<Stage> getStages(){
+	/*public List<Stage> getStages(){
 		return this.stages;
 	}
 	
 	public void setStage(List<Stage> stages) {
 		this.stages = stages;
-	}
+	}*/
 	
 }

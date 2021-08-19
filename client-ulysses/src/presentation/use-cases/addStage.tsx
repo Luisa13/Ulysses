@@ -8,15 +8,16 @@ import * as Provider from '../../util/Provider';
 
 
 type Props = {
-    trip: Trip 
+    id_trip: number 
     show: boolean
     hide: () => void
 }
 
-const AddNewStageModal: React.FC<Props> = ({ trip, show, hide }) => {
-    const blocStage = Provider.ProviderStages();
+const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
+    const blocStage = Provider.ProviderStages(id_trip);
     const blocTrip = Provider.ProviderTrips();
-    const[state, setState] = useState({place: "", dateIn: new Date(), dateOut: new Date(), description: ""});
+    //TODO: Improve design of this --> model in a type
+    const[state, setState] = useState({place: "", dateIn: new Date(), dateOut: new Date(), description: ""}); 
 
     
     const handlerOnFormChange = async (event: React.ChangeEvent<HTMLInputElement>) =>{
@@ -32,14 +33,14 @@ const AddNewStageModal: React.FC<Props> = ({ trip, show, hide }) => {
     const handleAddStage = async () => {
         const newStage = new Stage(1, state.place, state.dateIn, state.dateOut);
         blocStage.createNewStage(newStage);
-        trip.stages.push(newStage);
+        /*trip.stages.push(newStage);
         blocTrip.updateTrip(trip)
         .then(res =>{
             toast.success("New stage added to trip!");
         })
         .catch(ex =>{
             toast.error("Something wrong happen trying to add a stage.");
-        });
+        });*/
         
         show = false;
         await hide();

@@ -3,6 +3,11 @@ package com.luisa13.backendulysses.model;
 import java.util.Date;
 import javax.persistence.*;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * This class represents a stage within a specific trip.
  * 
@@ -34,7 +39,11 @@ public class Stage {
 	@Column(name = "description")
 	private String description;
 	
-	@ManyToOne(targetEntity =  Trip.class,  fetch = FetchType.LAZY)
+	//@ManyToOne(targetEntity =  Trip.class,  fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "idTrip")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Trip trip;
 	
 	public Stage() {}
@@ -91,6 +100,14 @@ public class Stage {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public Trip getTrip() {
+		return this.trip;
+	}
+	
+	public void setTrip(Trip trip) {
+		this.trip = trip;
 	}
 	
 	@Override

@@ -17,27 +17,36 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luisa13.backendulysses.model.Stage;
+import com.luisa13.backendulysses.model.Trip;
+import com.luisa13.backendulysses.repository.TripRepository;
 import com.luisa13.backendulysses.service.StageService;
+import com.luisa13.backendulysses.service.TripService;
 
 @RestController
-@RequestMapping("/stage")
+@RequestMapping("/trips/{id_trip}/stages")
 public class StageController {
 	
 	@Autowired
 	private StageService stageService;
 	
+	@Autowired
+	private TripService tripService;
+	
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Stage addStage(@RequestBody Stage stage) {
+	public Stage addStage(@PathVariable (value = "id_trip") Long idTrip, @RequestBody Stage stage) {
+		Trip trip = tripService.findTripById(idTrip);
+		stage.setTrip(trip);
+		
 		return this.stageService.addStage(stage);
 	}
 	
 	@PutMapping("/updatestage")
-	public ResponseEntity<String> updateStage(@RequestBody Stage stage){
+	public ResponseEntity<String> updateStage(@PathVariable (value = "id_trip") Long idTrip, @RequestBody Stage stage){
 		HttpStatus response;
 		try {
-			this.stageService.updateUSer(stage);
+			this.stageService.updateUser(stage);
 			response = HttpStatus.OK;
 		}catch(NoSuchElementException ex) {
 			System.out.println(ex.getMessage());
@@ -48,7 +57,7 @@ public class StageController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> delete(@PathVariable Long id){
+	public ResponseEntity<String> delete(@PathVariable (value = "id_trip") Long idTrip, @PathVariable Long id){
 		HttpStatus response;
 		try {
 			this.stageService.deleteStageById(id);
@@ -62,7 +71,7 @@ public class StageController {
 	}
 	
 	@GetMapping("/allstages")
-	public List<Stage> getAllStages(){
+	public List<Stage> getAllStages(@PathVariable (value = "id_trip") Long idTrip){
 		return this.stageService.getAllStages();
 	}
 

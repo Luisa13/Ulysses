@@ -14,8 +14,8 @@ export function ProviderUsers(): UserService{
     return userService;
 }
 
-export function ProviderStages(): StageService{
-    const stageRepository = new StageRepository();
+export function ProviderStages(id_trip: number): StageService{
+    const stageRepository = new StageRepository(id_trip);
     const stageService = new StageService(stageRepository);
 
     return stageService;

@@ -95,7 +95,7 @@ import * as Provider from '../util/Provider';
               <tr>
                 <th>Name</th>
                 <th>Date</th>
-                <th>Shared</th>
+                
                 <th></th>
               </tr>
             </thead>
@@ -106,7 +106,7 @@ import * as Provider from '../util/Provider';
                   <tr key={trip.id}>
                       <td>{trip.name}</td>
                       <td>{geDateFormat(trip.date)}</td>
-                      <td>{trip.stages.length} users</td>
+                     
 
                       <td>
                         <Link to={{

@@ -10,8 +10,14 @@ class StageDTO{
 }
 
 export default class StageRepository implements IStageRepository{
-    baseURL = "http://localhost:8080/stage";
-
+    idTrip;
+    baseURL;
+    
+    constructor(idTrip: number){
+      this.idTrip = idTrip;
+      this. baseURL = "http://localhost:8080/trips/" + this.idTrip + "/stages";
+    }
+    
     async getStages():Promise<Stage[]>{
         const localURL = this.baseURL + "/allstages";
         const response = await fetch(localURL);

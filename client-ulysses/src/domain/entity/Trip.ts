@@ -7,14 +7,14 @@ export default class Trip{
     date: string;
     //users: Set<number|undefined>;
     usersId: (number|undefined)[];
-    stages: Stage[];
+    //stages: Stage[];
 
     
-    constructor(id: number, name: string, date: string, usersId: (number|undefined)[], stages: Stage[]){
+    constructor(id: number, name: string, date: string, usersId: (number|undefined)[]){
         this.id = id;
         this.name = name;
         this.date = date;
         this.usersId = usersId;
-        this.stages = stages;
+        //this.stages = stages;
     }
 }

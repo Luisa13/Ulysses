@@ -3,7 +3,7 @@ import Stage from '../domain/entity/Stage';
 import * as Provider from '../util/Provider';
 
 const ListStage: React.FC = () =>{
-    const bloc = Provider.ProviderStages();
+    const bloc = Provider.ProviderStages(200);
     const [stages, setStage] = useState(Array<Stage>());
     bloc.getStages().then(res =>{
         setStage(res)
