@@ -64,8 +64,15 @@ const DetailTripStages: React.FC = () =>{
 
     }
 
-    const handleDeleteStage = () =>{
-
+    const handleDeleteStage = async (stage_id: number) =>{
+        blocStage.deleteStage(stage_id)
+        .then(res =>{
+            if(res.status == 200)
+                toast.success("A stage has been deleted");
+        })
+        .catch(error =>{
+            console.error("Error trying to delete a stage: " + error);
+        });
     }
 
    
@@ -100,7 +107,7 @@ const DetailTripStages: React.FC = () =>{
                                     <Card.Footer>
                                         <Row className="justify-content-md-center">
                                             <Col xs lg="2"><Button variant="light" href="#" onClick = {handleEditStage}><PencilFill color="royalblue" size={25} /></Button></Col>
-                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {handleDeleteStage}><Trash color="royalblue"  size={25} /></Button></Col>
+                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {()=>handleDeleteStage(stage.id)}><Trash color="royalblue"  size={25} /></Button></Col>
                                         </Row>
                                     </Card.Footer>
                                 </Card>

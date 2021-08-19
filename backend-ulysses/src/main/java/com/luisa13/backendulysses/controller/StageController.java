@@ -61,11 +61,8 @@ public class StageController {
 	public ResponseEntity<String> delete(@PathVariable (value = "id_trip") Long idTrip, @PathVariable Long id){
 		HttpStatus response;
 		try {
-			//Trip trip = tripService.findTripById(idTrip);
-			
 			Stage stage = stageService.findStageByIdAndIdTrip(id, idTrip);
-			stageService.deleteStage(stage);
-			//this.stageService.deleteStageById(id);
+			stageService.deleteStageById(stage.getId());
 			response = HttpStatus.OK;
 		}catch(NoSuchElementException ex) {
 			System.out.println(ex.getMessage());
