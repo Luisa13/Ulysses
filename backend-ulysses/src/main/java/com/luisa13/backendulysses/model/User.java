@@ -31,7 +31,11 @@ public class User implements Serializable{
 	private String password;
 	@Column(name = "role")
 	private String role;
+	
 	@ManyToMany
+	/*@JoinTable(name = "users_trips", 
+	joinColumns = {@JoinColumn(name = "idUser")}, 
+	inverseJoinColumns = {@JoinColumn(name = "idTrip")})*/
 	Set<Trip> trips;
 	
 	public User() {}
@@ -105,7 +109,8 @@ public class User implements Serializable{
 		
 	}
 	
-	public boolean equal(Object obj) {
+	@Override
+	public boolean equals(Object obj) {
 		if(obj != null)
 			return false;
 		
@@ -122,7 +127,11 @@ public class User implements Serializable{
 				this.surname.equals(user.surname) &&
 				this.email.equals(user.email) &&
 				this.password.equals(user.password) &&
-				this.role.equals(user.role);
+				this.role.equals(user.role) &&
+				
+				this.trips.equals(user.trips);
+		
+		
 	}
 	
 	@Override
@@ -140,6 +149,9 @@ public class User implements Serializable{
 			result = 31 * result + this.password.hashCode();
 		if(this.role != null)
 			result = 31 * result + this.role.hashCode();
+		
+		if(this.trips != null)
+			result = 31 * result + this.trips.hashCode();
 		
 		return 11;
 	}

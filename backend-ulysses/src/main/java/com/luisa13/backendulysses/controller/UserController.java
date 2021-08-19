@@ -66,7 +66,7 @@ public class UserController {
 	 * @return HttpStatus
 	 * */
 	@PutMapping("/updateuser")
-	public ResponseEntity<String> updateUSer(@RequestBody User user) {
+	public ResponseEntity<User> updateUSer(@RequestBody User user) {
 		HttpStatus response;
 		try {
 			this.userService.updateUser(user);
@@ -76,7 +76,7 @@ public class UserController {
 			response = HttpStatus.NOT_FOUND;
 		}
 		
-		return new ResponseEntity<String>(response);
+		return new ResponseEntity<User>(response);
 	}
 	
 	/**

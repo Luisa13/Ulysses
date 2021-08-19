@@ -13,6 +13,6 @@ public interface IUserService {
 	 void deleteUserById(Long id);
 	 User findUserById(Long id);
 	 User findUserByName(String name);
-	 void updateUser(User user);
+	 User updateUser(User user);
 	 List<User> getAllUsers();
 }

@@ -28,9 +28,11 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public void updateUser(User user) {
-		User oldUser = this.userRepo.findById(user.getId()).orElseThrow();
+	public User updateUser(User user) {
+		User oldUser = this.userRepo.findById(user.getId())
+				.orElseThrow();
 		userRepo.save(user);
+		return user;
 	}
 
 	@Override
