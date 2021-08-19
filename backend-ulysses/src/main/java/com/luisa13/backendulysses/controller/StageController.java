@@ -2,6 +2,7 @@ package com.luisa13.backendulysses.controller;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +61,11 @@ public class StageController {
 	public ResponseEntity<String> delete(@PathVariable (value = "id_trip") Long idTrip, @PathVariable Long id){
 		HttpStatus response;
 		try {
-			this.stageService.deleteStageById(id);
+			//Trip trip = tripService.findTripById(idTrip);
+			
+			Stage stage = stageService.findStageByIdAndIdTrip(id, idTrip);
+			stageService.deleteStage(stage);
+			//this.stageService.deleteStageById(id);
 			response = HttpStatus.OK;
 		}catch(NoSuchElementException ex) {
 			System.out.println(ex.getMessage());
@@ -72,7 +77,7 @@ public class StageController {
 	
 	@GetMapping("/allstages")
 	public List<Stage> getAllStages(@PathVariable (value = "id_trip") Long idTrip){
-		return this.stageService.getAllStages();
+		return this.stageService.getAllStages(idTrip);
 	}
 
 }

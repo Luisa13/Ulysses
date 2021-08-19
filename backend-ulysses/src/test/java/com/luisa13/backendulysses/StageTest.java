@@ -59,7 +59,7 @@ class StageTest {
 		Stage stage2 = new Stage("secondStop", trip);
 		stageService.addStage(stage2);
 		
-		assertFalse(stageService.getAllStages().isEmpty());
+		assertFalse(stageService.getAllStages(trip.getId()).isEmpty());
 	}
 	
 	@Test
@@ -72,7 +72,7 @@ class StageTest {
 		stageService.addStage(stage2);
 		
 		stageService.deleteStageById(stage1.getId());
-		assertTrue(stageService.getAllStages().size() <= 1);
+		assertTrue(stageService.getAllStages(trip.getId()).size() <= 1);
 	}
 
 }

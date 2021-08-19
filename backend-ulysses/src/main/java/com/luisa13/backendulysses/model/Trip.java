@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * This class represents a trip created by a user
  * 
@@ -32,8 +34,8 @@ public class Trip {
 	@ManyToMany(mappedBy = "trips")
 	private Set<User>users = new HashSet<User>();
 
-	@OneToMany(mappedBy = "trip", orphanRemoval = true, cascade = CascadeType.ALL)
-	private Set<Stage>stages = new HashSet<Stage>();
+	/*@OneToMany(mappedBy = "trip", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Stage>stages = new ArrayList<Stage>();*/
 	
 	public Trip() {}
 	
@@ -65,31 +67,30 @@ public class Trip {
 		this.date = date;
 	}
 	
-	public Set<Stage> getStages(){
+	/*public List<Stage> getStages(){
 		return this.stages;
 	}
 	
-	public void setStages(Set<Stage> stages) {
+	public void setStages(List<Stage> stages) {
 		this.stages = stages;
-	}
-	
+	}*/
 	
 	@Override
-	public boolean equals(Object o) {
-		if(o == null)
+	public boolean equals(Object obj) {
+		if(obj == null)
 			return false;
 		
-		if(o == this)
+		if(obj == this)
 			return true;
 		
-		if(this.getClass() != o.getClass())
+		if(this.getClass() != obj.getClass())
 			return false;
 		
-		Trip trip = (Trip)o;
+		Trip trip = (Trip)obj;
 		return this.id.equals(trip.id) && 
 				this.date.equals(trip.date) && 
 				this.name.equals(trip.name) && 
-				this.stages.equals(trip.stages) &&
+				//this.stages.equals(trip.stages) &&
 				this.users.equals(trip.users);
 	}
 	
@@ -102,10 +103,8 @@ public class Trip {
 			result = 31 * result + this.date.hashCode();
 		if(this.name != null)
 			result = 31 * result + this.name.hashCode();
-		if(this.users != null)
-			result = 31 * result + this.users.hashCode();
-		if(this.stages != null)
-			result = 31 * result + this.stages.hashCode();
+		/*if(this.stages != null)
+			result = 31 * result + this.stages.hashCode();*/
 				
 		
 		return result;

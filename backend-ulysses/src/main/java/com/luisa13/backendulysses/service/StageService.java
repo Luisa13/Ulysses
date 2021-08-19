@@ -1,6 +1,7 @@
 package com.luisa13.backendulysses.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,10 +36,16 @@ public class StageService implements IStageService{
 	public Stage findById(Long id) {
 		return this.stageRepo.findById(id).get();
 	}
+	
+	@Override
+	public Stage findStageByIdAndIdTrip(Long id, Long idTrip) {
+		return this.stageRepo.findByIdAndIdTrip(id, idTrip).get();
+		
+	}
 
 	@Override
-	public List<Stage> getAllStages() {
-		return this.stageRepo.findAll();
+	public List<Stage> getAllStages(Long idTrip) {
+		return this.stageRepo.findByIdTrip(idTrip);
 	}
 
 	@Override
