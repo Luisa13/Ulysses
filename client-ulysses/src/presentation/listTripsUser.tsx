@@ -10,6 +10,7 @@ import AddNewTripModal from "./use-cases/addTrip"
 import * as ApiService from '../util/ApiService';
 import Trip from "../domain/entity/Trip";
 import * as Provider from '../util/Provider';
+import * as Util from '../util/Util';
 
   const ListTripsUser:React.FC = () =>{
     
@@ -42,7 +43,7 @@ import * as Provider from '../util/Provider';
       setShowModal(true);
     }
 
-    const geDateFormat = (dateStr: string):string => {
+    /*const geDateFormat = (dateStr: string):string => {
       const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       const date = new Date(dateStr.toString());
       const dateFormat = date.getDay().toString() + " " 
@@ -50,7 +51,7 @@ import * as Provider from '../util/Provider';
       + date.getFullYear().toString();
 
       return dateFormat;
-    }
+    }*/
 
     /*const goToDetail = () =>{
       history.push({
@@ -105,7 +106,7 @@ import * as Provider from '../util/Provider';
                 updatedTrips && updatedTrips.map( (trip:any)=>(
                   <tr key={trip.id}>
                       <td>{trip.name}</td>
-                      <td>{geDateFormat(trip.date)}</td>
+                      <td>{Util.geDateFormat(trip.date)}</td>
                      
 
                       <td>

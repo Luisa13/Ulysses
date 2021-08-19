@@ -42,6 +42,7 @@ const DetailTripStages: React.FC = () =>{
         }
         initialData().then();
         getStages();
+        console.log(stages);
 
     }, [showModal]);
 
@@ -53,13 +54,20 @@ const DetailTripStages: React.FC = () =>{
         blocStage.getStages()
         .then(res =>{
             setStages(res);
+        })
+        .catch(error =>{
+            console.error("Error trying to fetch the stages: " + error);
         });
     }
-    
 
-    const handleSelect = () => {
-        
-    };
+    const handleEditStage = () =>{
+
+    }
+
+    const handleDeleteStage = () =>{
+
+    }
+
    
     return(
         <Container >
@@ -73,15 +81,17 @@ const DetailTripStages: React.FC = () =>{
             <Row >
                     <AliceCarousel>
                         
-                        {stages && stages.map( (stages) =>(
+                        {stages && stages.map( (stage) =>(
                             <>
                             <ItemCard
-                            place = {stages.place}
+                            place = {stage.place}
                             address = "C/ blablablabla"
                             telephone = "958 131736"
                             mail = "example@domain.com"
+                            dateStart = {stage.startDate}
+                            dateEnd = {stage.endDate}
                             edit = {false}
-                            onChangeInput = {handleSelect}
+                            onChangeInput = {()=>{}}
                         />
                         <Row>
                             <Col></Col>
@@ -89,8 +99,8 @@ const DetailTripStages: React.FC = () =>{
                                 <Card>
                                     <Card.Footer>
                                         <Row className="justify-content-md-center">
-                                            <Col xs lg="2"><Button variant="light" href="#" ><PencilFill color="royalblue" size={25} /></Button></Col>
-                                            <Col xs lg="2"><Button variant="light" href="#" ><Trash color="royalblue"  size={25} /></Button></Col>
+                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {handleEditStage}><PencilFill color="royalblue" size={25} /></Button></Col>
+                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {handleDeleteStage}><Trash color="royalblue"  size={25} /></Button></Col>
                                         </Row>
                                     </Card.Footer>
                                 </Card>

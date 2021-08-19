@@ -4,12 +4,13 @@ import { Button, Col, Container, Card, Row, Form, Navbar } from 'react-bootstrap
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { CalendarEvent, HouseDoor, Telephone, Envelope, PencilFill, Trash } from 'react-bootstrap-icons';
 import toast, { Toaster } from 'react-hot-toast';
+import * as Util from '../../util/Util';
 
 
 type Props = {
     place: string,
-    //dateStart: Date,
-    //dateEnd: Date
+    dateStart: Date,
+    dateEnd: Date
     address: string | "",
     telephone: string | "",
     mail: string | "example@domain.com",
@@ -17,7 +18,7 @@ type Props = {
     onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, onChangeInput}) => {
+const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, dateStart, dateEnd, onChangeInput}) => {
 
     /*const handleDeleteStage = async () => {
         console.log("deleting stage");
@@ -42,7 +43,8 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, onCh
                         <Row>
                             <Col md={5}> 
                             <Card.Title>
-                                <Form.Control onChange = {onChangeInput} name = "place" type={edit ? "text" : ""} readOnly={!edit} plaintext={!edit} placeholder="Place"  defaultValue={place}/>
+                                <Form.Control onChange = {onChangeInput} name = "place" type={edit ? "text" : ""} 
+                                readOnly={!edit} plaintext={!edit} placeholder="Place"  defaultValue={place}/>
                             </Card.Title>
                             </Col>
                             <Col>
@@ -50,9 +52,11 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, onCh
                                     <Form.Label column sm="1"><CalendarEvent color="black" size={25} /> </Form.Label>
                                     <Col>
                                         <Row >
-                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateIn" type={edit ? "date" : ""} readOnly={!edit} plaintext={!edit} placeholder="StartDate" /> </Col>
+                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateIn" type={edit ? "date" : ""} 
+                                            readOnly={!edit} plaintext={!edit} placeholder="StartDate" defaultValue={Util.geDateFormat(dateStart.toString())}/> </Col>
 
-                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateOut" type={edit ? "date" : ""} readOnly={!edit} plaintext={!edit} placeholder="EndDate" /></Col>
+                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateOut" type={edit ? "date" : ""} 
+                                            readOnly={!edit} plaintext={!edit} placeholder="EndDate" defaultValue={Util.geDateFormat(dateEnd.toString())}/></Col>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -98,7 +102,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, onCh
                         <Card.Text>
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
-                                        </Card.Text>
+                        </Card.Text>
                     </Card.Body>
 
                 </Card>
