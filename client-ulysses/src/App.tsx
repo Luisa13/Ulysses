@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {AuthProvider} from "./domain/components/authContext";
@@ -13,8 +13,13 @@ import DetailTripStages from './presentation/detailTripStages';
 
 function App() {
 
+  useEffect(()=>{
+        console.log("hola caracola" );
+  })
+
   return (
     <div className="App">
+      
 
     <Header></Header>
       <header className="App-header"> </header>
