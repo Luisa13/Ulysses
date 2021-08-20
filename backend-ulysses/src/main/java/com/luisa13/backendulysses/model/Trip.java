@@ -34,8 +34,6 @@ public class Trip {
 	@ManyToMany(mappedBy = "trips")
 	private Set<User>users = new HashSet<User>();
 
-	/*@OneToMany(mappedBy = "trip", orphanRemoval = true, cascade = CascadeType.ALL)
-	private List<Stage>stages = new ArrayList<Stage>();*/
 	
 	public Trip() {}
 	
@@ -67,13 +65,6 @@ public class Trip {
 		this.date = date;
 	}
 	
-	/*public List<Stage> getStages(){
-		return this.stages;
-	}
-	
-	public void setStages(List<Stage> stages) {
-		this.stages = stages;
-	}*/
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -90,7 +81,6 @@ public class Trip {
 		return this.id.equals(trip.id) && 
 				this.date.equals(trip.date) && 
 				this.name.equals(trip.name) && 
-				//this.stages.equals(trip.stages) &&
 				this.users.equals(trip.users);
 	}
 	
@@ -103,8 +93,6 @@ public class Trip {
 			result = 31 * result + this.date.hashCode();
 		if(this.name != null)
 			result = 31 * result + this.name.hashCode();
-		/*if(this.stages != null)
-			result = 31 * result + this.stages.hashCode();*/
 				
 		
 		return result;
