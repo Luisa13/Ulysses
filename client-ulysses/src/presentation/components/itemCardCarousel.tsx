@@ -20,14 +20,6 @@ type Props = {
 
 const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, dateStart, dateEnd, onChangeInput}) => {
 
-    /*const handleDeleteStage = async () => {
-        console.log("deleting stage");
-        await toast.success("Stage deleted");
-    }
-
-    const handleEditStage = () => {
-        console.log("modifying stage");
-    }*/
 
     return (
 
@@ -52,11 +44,15 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                                     <Form.Label column sm="1"><CalendarEvent color="black" size={25} /> </Form.Label>
                                     <Col>
                                         <Row >
-                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateIn" type={edit ? "date" : ""} 
-                                            readOnly={!edit} plaintext={!edit} placeholder="StartDate" defaultValue={Util.geDateFormat(dateStart.toString())}/> </Col>
+                                            <Col md={6}>
+                                                <Form.Control onChange = {onChangeInput} name = "dateIn" type={edit ? "date" : ""} 
+                                                readOnly={!edit} plaintext={!edit} placeholder="StartDate" defaultValue={Util.geDateFormat(dateStart.toString())}/> 
+                                            </Col>
 
-                                            <Col md={6}><Form.Control onChange = {onChangeInput} name = "dateOut" type={edit ? "date" : ""} 
-                                            readOnly={!edit} plaintext={!edit} placeholder="EndDate" defaultValue={Util.geDateFormat(dateEnd.toString())}/></Col>
+                                            <Col md={6}>
+                                                <Form.Control onChange = {onChangeInput} name = "dateOut" type={edit ? "date" : ""} 
+                                                readOnly={!edit} plaintext={!edit} placeholder="EndDate" defaultValue={Util.geDateFormat(dateEnd.toString())}/>
+                                            </Col>
                                         </Row>
                                     </Col>
                                 </Row>

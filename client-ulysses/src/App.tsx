@@ -13,10 +13,6 @@ import DetailTripStages from './presentation/detailTripStages';
 
 function App() {
 
-  useEffect(()=>{
-        console.log("hola caracola" );
-  })
-
   return (
     <div className="App">
       
