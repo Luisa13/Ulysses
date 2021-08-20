@@ -13,7 +13,6 @@ import { useLocation} from "react-router-dom";
 import Trip from "../domain/entity/Trip";
 import Stage from "../domain/entity/Stage";
 import AddNewStageModal from './use-cases/addStage';
-//import MapReact from './components/mapReact';
 import MapChart from './components/MapChart';
 import * as Provider from '../util/Provider';
 
@@ -42,7 +41,6 @@ const DetailTripStages: React.FC = () =>{
         }
         initialData().then();
         getStages();
-        console.log(stages);
 
     }, [showModal]);
 
@@ -67,7 +65,7 @@ const DetailTripStages: React.FC = () =>{
     const handleDeleteStage = async (stage_id: number) =>{
         blocStage.deleteStage(stage_id)
         .then(res =>{
-            if(res.status == 200)
+            if(res.status === 200)
                 toast.success("A stage has been deleted");
         })
         .catch(error =>{
@@ -81,7 +79,8 @@ const DetailTripStages: React.FC = () =>{
             <Row><h1>{trip?.name as string}</h1></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
-                        <MapChart/>
+                        <MapChart
+                        nameStages = {stages.map(stage =>{return stage.place})}/>
                     </Card>
             </Row>
             <br/>
@@ -106,8 +105,12 @@ const DetailTripStages: React.FC = () =>{
                                 <Card>
                                     <Card.Footer>
                                         <Row className="justify-content-md-center">
-                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {handleEditStage}><PencilFill color="royalblue" size={25} /></Button></Col>
-                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {()=>handleDeleteStage(stage.id)}><Trash color="royalblue"  size={25} /></Button></Col>
+                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {handleEditStage}>
+                                                <PencilFill color="royalblue" size={25} />
+                                            </Button></Col>
+                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {()=>handleDeleteStage(stage.id)}>
+                                                <Trash color="royalblue"  size={25} />
+                                            </Button></Col>
                                         </Row>
                                     </Card.Footer>
                                 </Card>

@@ -14,6 +14,7 @@ export const login = async (username:string, password: string) => {
             ...jsonHeader
           }
     });
+    console.log("Response: " + response);
     return response.json();
 };
 
@@ -31,6 +32,13 @@ export const getUser = async (token: string): Promise<User> => {
     });
     return response.json();
   }
+
+export const getCoordenatesFromAddress = async (place: string):Promise<any> =>{
+  const localURL = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + place;
+  const response = await fetch(localURL);
+  const jsonData = await response.json();
+  return jsonData; 
+}
 
 
   /*export const updateUser = async (user:object) =>{

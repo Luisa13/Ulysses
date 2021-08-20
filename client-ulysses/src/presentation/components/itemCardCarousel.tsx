@@ -1,16 +1,16 @@
 import React from 'react';
-import { Button, Col, Container, Card, Row, Form, Navbar } from 'react-bootstrap';
+import { Col, Card, Row, Form } from 'react-bootstrap';
 
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { CalendarEvent, HouseDoor, Telephone, Envelope, PencilFill, Trash } from 'react-bootstrap-icons';
-import toast, { Toaster } from 'react-hot-toast';
+import { CalendarEvent, HouseDoor, Telephone, Envelope } from 'react-bootstrap-icons';
+//import toast, { Toaster } from 'react-hot-toast';
 import * as Util from '../../util/Util';
 
 
 type Props = {
     place: string,
     dateStart: Date,
-    dateEnd: Date
+    dateEnd: Date,
     address: string | "",
     telephone: string | "",
     mail: string | "example@domain.com",
