@@ -5,7 +5,9 @@ import PointMap from "../../domain/entity/PointMap";
   
 const geoUrl =
 "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
-
+/**
+ * ===============  DEPRECATED  ===============
+*/
 /*const markers = [
 {
   markerOffset: -30,
@@ -25,7 +27,7 @@ const geoUrl =
 { markerOffset: 15, name: "Lima", coordinates: [-77.0428, -12.0464] }
 ];*/
 
-type Props = {
+/*type Props = {
   placeName: string;
 }
 const MapReact: React.FC<Props> = ({placeName}) =>{
@@ -102,4 +104,4 @@ const MapReact: React.FC<Props> = ({placeName}) =>{
     );
 }
 
-export default MapReact;
+export default MapReact;*/
