@@ -1,5 +1,5 @@
-import User from  "../entity/User";
-import Stage from "../entity/Stage";
+//import User from  "../entity/User";
+//import Stage from "../entity/Stage";
 
 export default class Trip{
     id: number;
