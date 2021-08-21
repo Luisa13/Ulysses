@@ -3,7 +3,7 @@
 > This project is under construction
 
 # Ulysses
-Web application to plan your trips in a very visual way developed following CLEAN architecture.
+Web application to plan your trips in a very visual way. The goal of this project was to cement and practice some concepts of Spring and at the same time get familiar with React.
 
 
 ## Requirements & Technologies
@@ -16,9 +16,10 @@ Web application to plan your trips in a very visual way developed following CLEA
 * JUnit 5
 
 **FrontEnd**
-* [Formik](https://formik.org) 
 * React 
 * Typescript
+* (React-Hot-Toast 2.1.0)[https://react-hot-toast.com] For pop-ups and messages in the app
+* (React-Leaflet)[https://react-leaflet.js.org] For map visualization
 
 ## Start the application
 Clone this project
