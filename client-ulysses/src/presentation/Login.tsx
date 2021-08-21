@@ -39,7 +39,8 @@ const Login: React.FC = () => {
       localStorage.setItem("token", token.accessToken);
       const user = await ApiService.getUser(token.accessToken)
       .then(res =>{
-          if('id' in res){
+        console.log("Logged");
+        if('id' in res){
             setUserInfo(res);
             history.push({pathname: "/listTripsUser"});
           }

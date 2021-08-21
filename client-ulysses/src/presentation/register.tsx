@@ -11,7 +11,7 @@ const Register: React.FC = () => {
             <Row>
             <h3>Register</h3>
             <Col>
-            <form>
+            <Form>
 
                     <div className="form-group">
                         <label>First name</label>
@@ -33,12 +33,12 @@ const Register: React.FC = () => {
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password1" className="form-control" placeholder="Enter password" />
+                        <input type="password" className="form-control" placeholder="Enter password" />
                     </div>
                     <br></br>
                     <div className="form-group">
                         <label>Repeat Password</label>
-                        <input type="password2" className="form-control" placeholder="Enter password again" />
+                        <input type="password" className="form-control" placeholder="Enter password again" />
                     </div>
                     <br></br>
 
@@ -47,12 +47,12 @@ const Register: React.FC = () => {
                         type="submit"
                         block
                         >
-                        Login
+                        Register
                     </Button>
                     <p className="forgot-password text-right">
                         Already registered <a href="#">log in?</a>
                     </p>
-                </form>
+                </Form>
 
             </Col>
             </Row>
