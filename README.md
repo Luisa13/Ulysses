@@ -18,8 +18,8 @@ Web application to plan your trips in a very visual way. The goal of this projec
 **FrontEnd**
 * React 
 * Typescript
-* (React-Hot-Toast 2.1.0)[https://react-hot-toast.com] For pop-ups and messages in the app
-* (React-Leaflet)[https://react-leaflet.js.org] For map visualization
+* [React-Hot-Toast 2.1.0](https://react-hot-toast.com) For pop-ups and messages in the app
+* [React-Leaflet](https://react-leaflet.js.org) For map visualization
 
 ## Start the application
 Clone this project
