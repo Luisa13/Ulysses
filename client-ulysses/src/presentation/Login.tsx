@@ -34,12 +34,12 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: LoginFormFields, formikHelpers: FormikHelpers<LoginFormFields>) => {
     try {
-      console.log("Login... ");
+
       const token = await ApiService.login(values.username, values.password);
       localStorage.setItem("token", token.accessToken);
+
       const user = await ApiService.getUser(token.accessToken)
       .then(res =>{
-        console.log("Logged");
         if('id' in res){
             setUserInfo(res);
             history.push({pathname: "/listTripsUser"});
@@ -68,6 +68,7 @@ const Login: React.FC = () => {
                 <Formik initialValues={form.initialValues}
                         validationSchema={form.validationSchema}
                         onSubmit={handleSubmit}>
+                          
                   {(formikProps: FormikProps<LoginFormFields>) =>
                     <Form onSubmit={formikProps.handleSubmit} method="post">
                       <Form.Group controlId="username">

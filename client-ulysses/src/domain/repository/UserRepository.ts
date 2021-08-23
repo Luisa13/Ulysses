@@ -26,7 +26,6 @@ export default class UserRepository implements IUserRepository{
         return jsonData.map((user: UserDTO) => new User(user.id, user.name, user.surname, user.email, user.password, user.role, user.trips));
     }
 
-    // ====== UNDER CONSTRUCTION ======
     async updateUser(user:object): Promise<Response>{
         const localUrl = this.baseURL + "/updateuser";
         const response = await fetch(localUrl, {
@@ -35,6 +34,18 @@ export default class UserRepository implements IUserRepository{
             ...this.jsonHeader
           },
           body: JSON.stringify(user),
+        });
+        return response;
+      }
+
+      async createUser(user: object): Promise<Response>{
+        const localUrl = this.baseURL + "/";
+        const response = await fetch(localUrl, {
+          method: 'POST',
+          headers: {
+            ...this.jsonHeader
+          },
+          body: JSON.stringify(user)
         });
         return response;
       }
