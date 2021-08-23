@@ -10,16 +10,15 @@ import Login from './presentation/Login';
 import Register from './presentation/register';
 import DetailTripStages from './presentation/detailTripStages';
 
-
 function App() {
 
   return (
     <div className="App">
-      
 
-    <Header></Header>
+    
       <header className="App-header"> </header>
       <AuthProvider>
+        <Header></Header>
           <Router>
             <Switch>
 
