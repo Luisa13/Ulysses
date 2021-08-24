@@ -1,5 +1,7 @@
 package com.luisa13.backendulysses.controller;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luisa13.backendulysses.model.Stage;
+import com.luisa13.backendulysses.model.StageDTO;
 import com.luisa13.backendulysses.model.Trip;
 import com.luisa13.backendulysses.repository.TripRepository;
 import com.luisa13.backendulysses.service.StageService;
@@ -36,11 +39,11 @@ public class StageController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Stage addStage(@PathVariable (value = "id_trip") Long idTrip, @RequestBody Stage stage) {
+	public Stage addStage(@PathVariable (value = "id_trip") Long idTrip, @RequestBody StageDTO stage) {
 		Trip trip = tripService.findTripById(idTrip);
-		stage.setTrip(trip);
-		
-		return this.stageService.addStage(stage);
+		Stage newStage = stage.getStageClass();
+		newStage.setTrip(trip);
+		return this.stageService.addStage(newStage);
 	}
 	
 	@PutMapping("/updatestage")
@@ -73,8 +76,22 @@ public class StageController {
 	}
 	
 	@GetMapping("/allstages")
-	public List<Stage> getAllStages(@PathVariable (value = "id_trip") Long idTrip){
-		return this.stageService.getAllStages(idTrip);
+	public List<StageDTO> getAllStages(@PathVariable (value = "id_trip") Long idTrip){
+		//return this.stageService.getAllStages(idTrip);
+		List<StageDTO> stages = new ArrayList<StageDTO>();
+		List<Stage> stageList = this.stageService.getAllStages(idTrip);
+		
+		for(Stage stage: stageList) {
+			String imageBase64 = "";
+			if(stage.getImage() != null)
+				imageBase64 = Base64.getEncoder().encodeToString(stage.getImage());
+			StageDTO stageDTO = new StageDTO(stage.getId(), stage.getPlace(), stage.getStartDate(), stage.getEndDate(),
+					stage.getDescription());
+			stageDTO.setImageBase64(imageBase64);
+			stages.add(stageDTO);
+		}
+		
+		return stages;
 	}
-
+	
 }
