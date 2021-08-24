@@ -3,24 +3,16 @@ export default class Stage{
     place: string;
     startDate: Date;
     endDate: Date;
-    //image: File;
+    imageBase64: string;
     description: string;
 
-    constructor(id: number, place: string, startDate: Date, endDate: Date){
+    constructor(id: number, place: string, startDate: Date, endDate: Date, imageBase64: string){
         this.id = id;
         this.place = place;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = "";
-        //this.image ;
-    }
-
-   /* setImage(image: File){
-        this.image = image;
-    }*/
-
-    setDescription(description: string){
-        this.description = description;
+        this.imageBase64 = imageBase64;
     }
 
 }

@@ -33,7 +33,7 @@ public class Stage {
 	@Column(name = "endDate")
 	private Date endDate;
 	
-	@Column(name = "image")
+	@Column(name = "image", columnDefinition = "BINARY(100000)", length = 100000)
 	private byte[] image;
 	
 	@Column(name = "description")

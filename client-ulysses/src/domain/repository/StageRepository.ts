@@ -7,6 +7,7 @@ class StageDTO{
     place: string= "";
     startDate: Date = new Date();
     endDate: Date = new Date();
+    imageBase64: string = "";
 }
 
 export default class StageRepository implements IStageRepository{
@@ -18,12 +19,13 @@ export default class StageRepository implements IStageRepository{
       this. baseURL = "http://localhost:8080/trips/" + this.idTrip + "/stages";
     }
     
-    async getStages():Promise<Stage[]>{
+    async getStages(){
         const localURL = this.baseURL + "/allstages";
         const response = await fetch(localURL);
         const jsonData = await response.json();
+        console.log(jsonData);
+        return jsonData.map((stage: StageDTO) => new Stage(stage.id, stage.place, stage.startDate, stage.endDate, stage.imageBase64));
 
-        return jsonData.map((stage: StageDTO) => new Stage(stage.id, stage.place, stage.startDate, stage.endDate));
 
     }
 
@@ -34,7 +36,7 @@ export default class StageRepository implements IStageRepository{
           headers: {
             ...this.jsonHeader
           },
-          body: JSON.stringify(stage),
+          body: JSON.stringify(stage), 
         });
 
         return response.json();

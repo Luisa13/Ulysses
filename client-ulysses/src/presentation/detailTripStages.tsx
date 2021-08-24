@@ -76,6 +76,7 @@ const DetailTripStages: React.FC = () =>{
    
     return(
         <Container >
+            <br/>
             <Row><h1>{trip?.name as string}</h1></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
@@ -85,8 +86,7 @@ const DetailTripStages: React.FC = () =>{
             </Row>
             <br/>
             <Row >
-                    <AliceCarousel>
-                        
+                    <AliceCarousel >
                         {stages && stages.map( (stage) =>(
                             <>
                             <ItemCard
@@ -96,12 +96,13 @@ const DetailTripStages: React.FC = () =>{
                             mail = "example@domain.com"
                             dateStart = {stage.startDate}
                             dateEnd = {stage.endDate}
+                            image = {stage.imageBase64}
                             edit = {false}
                             onChangeInput = {()=>{}}
                         />
                         <Row>
                             <Col></Col>
-                            <Col>
+                            <Col sm={7}>
                                 <Card>
                                     <Card.Footer>
                                         <Row className="justify-content-md-center">

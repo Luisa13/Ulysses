@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * This class is used to encapsulate Trip data and send it from the current system to the client.
@@ -31,15 +33,6 @@ public class TripDTO {
 		this.setUsersId(usersId);
 	}
 	
-	public Trip getTripClass() {
-		
-		Trip newTrip = new Trip(this.getName());
-		newTrip.setDate(this.date);
-		//newTrip.setStages(this.stages);
-		
-		return newTrip;
-	}
-
 
 	public Long getId() {
 		return id;
@@ -80,6 +73,16 @@ public class TripDTO {
 		this.usersId = usersId;
 	}
 	
+	@JsonIgnore
+	public Trip getTripClass() {
+		
+		Trip newTrip = new Trip(this.getName());
+		newTrip.setDate(this.date);
+		//newTrip.setStages(this.stages);
+		
+		return newTrip;
+	}
+	
 	/*public List<Stage> getStages(){
 		return this.stages;
 	}
@@ -87,5 +90,23 @@ public class TripDTO {
 	public void setStage(List<Stage> stages) {
 		this.stages = stages;
 	}*/
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		
+		if(obj == this)
+			return true;
+		
+		if(this.getClass() != obj.getClass())
+			return false;
+		
+		TripDTO tripDTO = (TripDTO)obj;
+		
+		return this.id.equals(tripDTO.id) &&
+				this.name.equals(tripDTO.name) &&
+				this.date.equals(tripDTO.date);
+	}
 	
 }
