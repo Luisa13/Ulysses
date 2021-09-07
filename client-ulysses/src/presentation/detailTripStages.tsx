@@ -28,7 +28,7 @@ const DetailTripStages: React.FC = () =>{
 
     useEffect(() =>{
         const token = localStorage.getItem("token");
-        const initialData = async () => {
+        const fetchInitialData = async () => {
           try{
             const u = await ApiService.getUser(token as string)
             .then(user =>{
@@ -39,10 +39,12 @@ const DetailTripStages: React.FC = () =>{
             console.log(error);
           }
         }
-        initialData().then();
+        fetchInitialData().then();
         getStages();
 
     }, [showModal]);
+
+    
 
     const handleShowModal = () =>{
         setShowModal(true);
@@ -80,8 +82,8 @@ const DetailTripStages: React.FC = () =>{
             <Row><h1>{trip?.name as string}</h1></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
-                        <MapChart
-                        nameStages = {stages.map(stage =>{return stage.place})}/>
+                        {stages.length && <MapChart
+                        nameStages = {stages}/>}
                     </Card>
             </Row>
             <br/>
@@ -91,8 +93,8 @@ const DetailTripStages: React.FC = () =>{
                             <>
                             <ItemCard
                             place = {stage.place}
-                            address = "C/ blablablabla"
-                            telephone = "958 131736"
+                            address = "Hotel Guest 123"
+                            telephone = "555-555-555"
                             mail = "example@domain.com"
                             dateStart = {stage.startDate}
                             dateEnd = {stage.endDate}
