@@ -23,7 +23,7 @@ export default class StageRepository implements IStageRepository{
         const localURL = this.baseURL + "/allstages";
         const response = await fetch(localURL);
         const jsonData = await response.json();
-        console.log(jsonData);
+        //console.log(jsonData);
         return jsonData.map((stage: StageDTO) => new Stage(stage.id, stage.place, stage.startDate, stage.endDate, stage.imageBase64));
 
 
