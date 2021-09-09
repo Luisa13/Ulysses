@@ -1,9 +1,8 @@
-import React from 'react';
-import { Col, Card, Row, Form } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Col, Card, Row, Form, Image } from 'react-bootstrap';
 
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { CalendarEvent, HouseDoor, Telephone, Envelope } from 'react-bootstrap-icons';
-//import toast, { Toaster } from 'react-hot-toast';
 import * as Util from '../../util/Util';
 
 
@@ -15,21 +14,35 @@ type Props = {
     telephone: string | "",
     mail: string | "example@domain.com",
     edit: boolean | false,
+    image: string | "",
     onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, dateStart, dateEnd, onChangeInput}) => {
-
+const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, dateStart, dateEnd, image, onChangeInput}) => {
 
     return (
 
         <Row>
-            <Col>
+            <Col sm={5}>
                 <Card style={{ height: '15rem' }}>
-                    <Card.Img variant="top" src="" />
+                    {!edit ?
+                        <Image  style={{ height: '15rem' }} 
+                        src={(image==="" || image === undefined) ? 
+                        "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/96/4c/cb.jpg"
+                        : "data:image/jpeg;base64" + image} rounded />
+                    :
+                        <input 
+                        type="file" 
+                        className="form-control" 
+                        name="file" 
+                        multiple
+                        accept = ".jpg, .png, .jpeg" 
+                        onChange={onChangeInput}
+                        />
+                    }
                 </Card>
             </Col>
-            <Col>
+            <Col sm={7}>
                 <Card style={{ height: '15rem' }}>
                     <Card.Header>
                         <Row>
@@ -88,7 +101,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                                             </Form.Label>
                                         </Col>
                                         <Col sm="10">
-                                            <Form.Control onChange = {onChangeInput} name = "place" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={address} />
+                                            <Form.Control onChange = {onChangeInput} name = "address" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={address} />
                                         </Col>
                                     </Form.Group>
                                 </Col>
