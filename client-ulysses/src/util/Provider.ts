@@ -6,6 +6,8 @@ import TripService from "../domain/service/TripService";
 import TripRepository from "../domain/repository/TripRepository";
 import AuthService from "../domain/service/AuthService";
 import AuthRepository from "../domain/repository/AuthRepository";
+import PointMapService from "../domain/service/PointMapService";
+import PointMapRepository from "../domain/repository/PointMapRepository";
 
 export function ProviderUsers(): UserService{
     const userRepository = new UserRepository();
@@ -33,4 +35,11 @@ export function ProviderAuth(): AuthService{
     const authService = new AuthService(authRepository);
 
     return authService;
+}
+
+export function ProviderMapPoints(): PointMapService{
+    const pointMapRepository = new PointMapRepository();
+    const pointMapService = new PointMapService(pointMapRepository);
+
+    return pointMapService;
 }
