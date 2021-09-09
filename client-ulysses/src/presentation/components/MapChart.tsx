@@ -3,9 +3,11 @@ import "leaflet/dist/leaflet.css";
 import L, { LatLngTuple, point } from 'leaflet';
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-import * as ApiService from '../../util/ApiService';
+//import * as ApiService from '../../util/ApiService';
 import PointMap from '../../domain/entity/PointMap';
 import Stage from "../../domain/entity/Stage";
+
+import * as Provider from "../../util/Provider";
 
 function createIcon(url: string) {
     return new L.Icon({
@@ -15,7 +17,6 @@ function createIcon(url: string) {
 
 
   type Props = {
-      // nameStages: string
       nameStages: Stage[];
   }
 const MapChart: React.FC<Props> = ({nameStages}) =>{
@@ -23,20 +24,12 @@ const MapChart: React.FC<Props> = ({nameStages}) =>{
     
 
     useEffect(()=>{
-        //nameStages.map(location =>{searchLocation(location)});
-        //searchLocation(nameStages);
-        
-        const getLocationData = async() =>{
-            if(nameStages.length >0)
-                searchLocations(nameStages);
-        }
-
-        getLocationData().then();
-
+        searchLocations(nameStages);
     },[]);
 
     const searchLocations = async(stages: Stage[]) =>{
-        const coordenates = await ApiService.getPointMaps(stages);
+        const pointsProvider = Provider.ProviderMapPoints();
+        const coordenates = await pointsProvider.getPointMaps(stages);
         setPoints(coordenates);
     }
 
@@ -62,8 +55,8 @@ const MapChart: React.FC<Props> = ({nameStages}) =>{
                 </Marker>  
             ))}
             
-            </MapContainer>
-            </div>
+         </MapContainer>
+        </div>
     );
 }
 
