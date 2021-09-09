@@ -4,7 +4,6 @@ import L, { LatLngTuple, point } from 'leaflet';
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import * as ApiService from '../../util/ApiService';
-import PoinMap from '../../domain/entity/PointMap';
 import PointMap from '../../domain/entity/PointMap';
 import Stage from "../../domain/entity/Stage";
 
@@ -20,7 +19,7 @@ function createIcon(url: string) {
       nameStages: Stage[];
   }
 const MapChart: React.FC<Props> = ({nameStages}) =>{
-    const [points, setPoints] = useState<PoinMap[]>([]);
+    const [points, setPoints] = useState<PointMap[]>([]);
     
 
     useEffect(()=>{
@@ -37,22 +36,9 @@ const MapChart: React.FC<Props> = ({nameStages}) =>{
     },[]);
 
     const searchLocations = async(stages: Stage[]) =>{
-        stages.forEach( stage =>{
-            const place = stage.place;
-            ApiService.getCoordenatesFromAddress(place)
-            .then(res =>{
-                const point = new PoinMap(0, place, 1, res[0].lat, res[0].lon);
-                const pointArr = [] as PointMap[];
-                pointArr.push(point);
-                setPoints(pointArr);     
-            })
-            .catch(error =>{
-                console.error("Error trying to fetch location: " + error);
-            });
-        });
-        
+        const coordenates = await ApiService.getPointMaps(stages);
+        setPoints(coordenates);
     }
-
 
     return(
         <div>
