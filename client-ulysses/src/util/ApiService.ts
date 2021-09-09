@@ -62,39 +62,3 @@ export const getPointMaps = async (stages: Stage[]): Promise<PointMap[]> =>{
 }
 
 
-  /*export const updateUser = async (user:object) =>{
-    const response = await fetch(`${API_BASE_URL}/user/updateuser`, {
-      method: 'PUT',
-      headers: {
-        ...jsonHeader
-      },
-      body: JSON.stringify(user),
-    });
-    return response;
-  }*/
-
-
- /* export const createTrip = async (trip: object): Promise<Trip> =>{
-    const response = await fetch(`${API_BASE_URL}/trip/`, {
-      method: 'POST',
-      headers: {
-        ...jsonHeader
-      },
-      body: JSON.stringify(trip),
-    });
-
-    return response.json();
-  }*/
-
-
- /* export const deleteTrip = async (id_trip: number) =>{
-    const response = await fetch(`${API_BASE_URL}/trip/${id_trip}`, {
-      method: 'DELETE',
-      headers: {
-        ...jsonHeader
-      },
-    });
-
-    return response;
-  }*/
-
