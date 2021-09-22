@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.luisa13.backendulysses.exception.UserNotFoundException;
 import com.luisa13.backendulysses.model.User;
 import com.luisa13.backendulysses.service.UserService;
 
@@ -53,8 +54,8 @@ public class UserController {
 			this.userService.deleteUserById(id);
 			response = HttpStatus.OK;
 		}catch(NoSuchElementException ex) {
-			System.out.println(ex.getMessage());
 			response = HttpStatus.NOT_FOUND;
+			throw new UserNotFoundException(ex.getMessage());
 		}
 		
 		return new ResponseEntity<String>(response);
@@ -66,14 +67,14 @@ public class UserController {
 	 * @return HttpStatus
 	 * */
 	@PutMapping("/updateuser")
-	public ResponseEntity<User> updateUSer(@RequestBody User user) {
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		HttpStatus response;
 		try {
 			this.userService.updateUser(user);
 			response = HttpStatus.OK;
 		}catch(RuntimeException ex) {
-			System.out.println(ex.getMessage());
 			response = HttpStatus.NOT_FOUND;
+			throw new UserNotFoundException(ex.getMessage());
 		}
 		
 		return new ResponseEntity<User>(response);
