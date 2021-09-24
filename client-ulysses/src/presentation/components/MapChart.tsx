@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import L, { LatLngTuple, point } from 'leaflet';
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-//import * as ApiService from '../../util/ApiService';
+
 import PointMap from '../../domain/entity/PointMap';
 import Stage from "../../domain/entity/Stage";
 
@@ -13,19 +13,21 @@ function createIcon(url: string) {
     return new L.Icon({
       iconUrl: markerIconPng
     });
-  }
+}
 
 
-  type Props = {
+type Props = {
       nameStages: Stage[];
-  }
-const MapChart: React.FC<Props> = ({nameStages}) =>{
+      update:boolean;
+}
+
+const MapChart: React.FC<Props> = ({nameStages, update}) =>{
     const [points, setPoints] = useState<PointMap[]>([]);
-    
 
     useEffect(()=>{
         searchLocations(nameStages);
-    },[]);
+        console.log("Updating the map");
+    },[update]);
 
     const searchLocations = async(stages: Stage[]) =>{
         const pointsProvider = Provider.ProviderMapPoints();
@@ -46,7 +48,7 @@ const MapChart: React.FC<Props> = ({nameStages}) =>{
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            {points.map((point, index) =>(
+            {points.length && points.map((point, index) =>(
                 <Marker
                     key = {index}
                     position = {[point.lat, point.lon]} 

@@ -1,3 +1,4 @@
+import { isEmptyBindingElement } from 'typescript';
 import PointMap from '../entity/PointMap';
 import Stage from '../entity/Stage'
 
@@ -23,8 +24,10 @@ export default class PointMapRepository{
         const coordinatesObj = await this.getCoordenatesFromAddress(stages);
         coordinatesObj.forEach(loc =>{
           const location = loc[0];
-          const point = new PointMap(0, location.display_name, 1, location.lat, location.lon);
-          pointArr.push(point);
+          if(location !== undefined){
+            const point = new PointMap(0, location.display_name, 1, location.lat, location.lon);
+            pointArr.push(point);
+          }
         });
         return pointArr;
       } 
