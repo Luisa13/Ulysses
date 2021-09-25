@@ -33,6 +33,15 @@ public class Stage {
 	@Column(name = "endDate")
 	private Date endDate;
 	
+	@Column(name = "accomodation") //NEW
+	private String accomodation;
+	
+	@Column(name = "phone") //NEW
+	private String phone;
+	
+	@Column(name = "email") //NEW
+	private String email;
+	
 	@Column(name = "image", columnDefinition = "BINARY(100000)", length = 100000)
 	private byte[] image;
 	
@@ -84,6 +93,30 @@ public class Stage {
 	
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	
+	public String getAccomodation(){
+		return this.accomodation;
+	}	
+	
+	public void setAccomodation(String accomodation) {
+		this.accomodation = accomodation;
+	}
+	
+	public String getPhone(){
+		return this.phone;
+	}	
+	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public String getEmail(){
+		return this.email;
+	}	
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public byte[] getImage() {

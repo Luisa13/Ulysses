@@ -11,14 +11,20 @@ public class StageDTO {
 	private Date startDate;
 	private Date endDate;
 	private String imageBase64;
+	private String accomodation;
+	private String phone;
+	private String email;
 	private String description;
 	private Trip trip;
 	
-	public StageDTO(Long id, String place, Date startDate, Date endDate, String description) {
+	public StageDTO(Long id, String place, Date startDate, Date endDate, String accomodation, String phone, String email, String description) {
 		this.id = id;
 		this.place = place;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.accomodation = accomodation;
+		this.phone = phone;
+		this.email = email;
 		this.description = description;
 	}
 	public void setId(Long id) {
@@ -81,6 +87,10 @@ public class StageDTO {
 	public Stage getStageClass() {
 		byte imageByte[]  = Base64.decodeBase64(this.imageBase64);
 		Stage newStage = new Stage(this.place, this.startDate, this.endDate);
+		newStage.setAccomodation(accomodation);
+		newStage.setPhone(phone);
+		newStage.setEmail(email);
+		newStage.setDescription(description);
 		newStage.setImage(imageByte);
 		
 		return newStage;
@@ -106,6 +116,24 @@ public class StageDTO {
 				this.endDate.equals(stage.endDate) &&
 				this.imageBase64.equals(stage.imageBase64) &&
 				this.description.equals(stage.description);
+	}
+	public String getAccomodation() {
+		return accomodation;
+	}
+	public void setAccomodation(String accomodation) {
+		this.accomodation = accomodation;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
