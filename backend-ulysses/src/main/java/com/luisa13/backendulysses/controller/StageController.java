@@ -86,7 +86,7 @@ public class StageController {
 			if(stage.getImage() != null)
 				imageBase64 = Base64.getEncoder().encodeToString(stage.getImage());
 			StageDTO stageDTO = new StageDTO(stage.getId(), stage.getPlace(), stage.getStartDate(), stage.getEndDate(),
-					stage.getDescription());
+					stage.getAccomodation(), stage.getEmail(), stage.getEmail(), stage.getDescription());
 			stageDTO.setImageBase64(imageBase64);
 			stages.add(stageDTO);
 		}
