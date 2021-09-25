@@ -90,7 +90,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                                             <Telephone color="royalblue" size={25} />
                                         </Form.Label>
                                         <Col sm="5">
-                                            <Form.Control onChange = {onChangeInput} name = "telephone" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={telephone} />
+                                            <Form.Control onChange = {onChangeInput} name = "phone" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={telephone} />
                                         </Col>
                                     </Form.Group>
 
@@ -101,7 +101,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                                             </Form.Label>
                                         </Col>
                                         <Col sm="10">
-                                            <Form.Control onChange = {onChangeInput} name = "address" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={address} />
+                                            <Form.Control onChange = {onChangeInput} name = "accomodation" type={edit ? "" : "text"} readOnly={!edit} plaintext={!edit} defaultValue={address} />
                                         </Col>
                                     </Form.Group>
                                 </Col>

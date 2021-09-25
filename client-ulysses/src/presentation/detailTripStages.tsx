@@ -24,9 +24,11 @@ const DetailTripStages: React.FC = () =>{
     const [trip, setTrip] = useState<Trip>();
     const [stages, setStages] = useState<Stage[]>([]);
     const [showModal, setShowModal] = useState(false);
+    const [updateMap, setUpdateMap] = useState(false);
     const blocStage = Provider.ProviderStages(idTrip as number);
 
     useEffect(() =>{
+        console.log("update the detail view");
         const token = localStorage.getItem("token");
         const fetchInitialData = async () => {
           try{
@@ -42,17 +44,20 @@ const DetailTripStages: React.FC = () =>{
         fetchInitialData().then();
         getStages();
 
-    }, [showModal]);
+    }, [showModal, updateMap]);
 
     
 
     const handleShowModal = () =>{
         setShowModal(true);
+        setUpdateMap(true);
     }
 
-    const getStages = ()=>{
-        blocStage.getStages()
+    
+    const getStages = async ()=>{
+        await blocStage.getStages()
         .then(res =>{
+            console.log(res);
             setStages(res);
         })
         .catch(error =>{
@@ -61,11 +66,11 @@ const DetailTripStages: React.FC = () =>{
     }
 
     const handleEditStage = () =>{
-
+        // To be implemented
     }
 
     const handleDeleteStage = async (stage_id: number) =>{
-        blocStage.deleteStage(stage_id)
+        await blocStage.deleteStage(stage_id)
         .then(res =>{
             if(res.status === 200)
                 toast.success("A stage has been deleted");
@@ -73,6 +78,8 @@ const DetailTripStages: React.FC = () =>{
         .catch(error =>{
             console.error("Error trying to delete a stage: " + error);
         });
+
+        setUpdateMap(true);
     }
 
    
@@ -82,8 +89,11 @@ const DetailTripStages: React.FC = () =>{
             <Row><h1>{trip?.name as string}</h1></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
-                        {stages.length && <MapChart
-                        nameStages = {stages}/>}
+                        {stages.length && 
+                        <MapChart
+                            nameStages = {stages}
+                            update = {updateMap}
+                        />}
                     </Card>
             </Row>
             <br/>
@@ -93,9 +103,9 @@ const DetailTripStages: React.FC = () =>{
                             <>
                             <ItemCard
                             place = {stage.place}
-                            address = "Hotel Guest 123"
-                            telephone = "555-555-555"
-                            mail = "example@domain.com"
+                            address = {stage.accomodation}
+                            telephone = {stage.phone}
+                            mail = {stage.email}
                             dateStart = {stage.startDate}
                             dateEnd = {stage.endDate}
                             image = {stage.imageBase64}

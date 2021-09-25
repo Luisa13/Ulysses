@@ -17,7 +17,7 @@ const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
     const blocStage = Provider.ProviderStages(id_trip);
     //const blocTrip = Provider.ProviderTrips();
     //TODO: Improve design of this --> model in a type
-    const[state, setState] = useState({place: "", dateIn: new Date(), dateOut: new Date(), description: "", image: ""}); 
+    const[state, setState] = useState({place: "", dateIn: new Date(), dateOut: new Date(), accomodation: "", phone: "", email: "",  description: "", image: ""}); 
     const [base64Str, setBase64Str] = useState<string>("");
 
     
@@ -42,7 +42,7 @@ const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
     }
 
     const handleAddStage = async () => {
-        const newStage = new Stage(1, state.place, state.dateIn, state.dateOut, base64Str);
+        const newStage = new Stage(1, state.place, state.dateIn, state.dateOut, state.accomodation, state.phone, state.email, base64Str, state.description);
         blocStage.createNewStage(newStage)
         .then(res =>{
             toast.success("New stage added to trip!");
