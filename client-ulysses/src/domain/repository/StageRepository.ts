@@ -8,6 +8,10 @@ class StageDTO{
     startDate: Date = new Date();
     endDate: Date = new Date();
     imageBase64: string = "";
+    description: string = "";
+    accomodation: string = ""; 
+    phone: string = ""; 
+    email: string = "";
 }
 
 export default class StageRepository implements IStageRepository{
@@ -24,7 +28,7 @@ export default class StageRepository implements IStageRepository{
         const response = await fetch(localURL);
         const jsonData = await response.json();
         //console.log(jsonData);
-        return jsonData.map((stage: StageDTO) => new Stage(stage.id, stage.place, stage.startDate, stage.endDate, stage.imageBase64));
+        return jsonData.map((stage: StageDTO) => new Stage(stage.id, stage.place, stage.startDate, stage.endDate, stage.accomodation, stage.phone, stage.email, stage.imageBase64, stage.description));
 
 
     }
