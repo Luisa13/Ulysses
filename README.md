@@ -1,10 +1,11 @@
-> :construction: WARNING: :construction:
-> 
-> This project is under construction
 
 # Ulysses
 Web application to plan your trips in a very visual way. The goal of this project was in principle, to cement and practice some concepts of Spring and at the same time get familiar with React and FrontEnd practices which is not my expertise.
 The application allows users previously registered access to the system to organize and plan their future trips, keeping a visual track of every point. All the trips are composed by stages and each of them are displayed in a map. 
+
+> :construction: WARNING: :construction:
+> 
+> This project is under construction
 
 ## Requirements & Technologies
 **Backend**
