@@ -43,6 +43,10 @@ The client will start at port 3000
 
 ## Example
 
+## References
+- [Clean architechture in React](https://janithl.github.io/2019/10/react-clean-architecture-part-2/)
+
+
 ## Author and License
 Luisa Sanchez Avivar - 2021
 
