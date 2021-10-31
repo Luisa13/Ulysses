@@ -45,6 +45,7 @@ The client will start at port 3000
 
 ## References
 - [Clean architechture in React](https://janithl.github.io/2019/10/react-clean-architecture-part-2/)
+- [Single Page Application Template: Best practices](https://github.com/pcalouche/spat)
 
 
 ## Author and License
