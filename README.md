@@ -47,7 +47,7 @@ The client will start at port 3000
 - [Clean architechture in React](https://janithl.github.io/2019/10/react-clean-architecture-part-2/)
 - [Single Page Application Template: Best practices](https://github.com/pcalouche/spat)
 - [Mastering Microservices with Java 11](https://github.com/PacktPublishing/Mastering-Microservices-with-Java-Third-Edition)
-- [Dockerizing a spring-boot app](https://medium.com/geekculture/dockerizing-a-spring-boot-application-with-maven-122286e9f582)
+- [Dockerizing a spring-boot app](https://medium.com/geekculture/dockerizing-a-spring-boot-application-with-maven-122286e9f582) and a start to finish [guide](https://stackify.com/guide-docker-java/)
 
 
 ## Author and License
