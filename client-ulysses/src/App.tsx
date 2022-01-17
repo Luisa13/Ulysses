@@ -8,7 +8,8 @@ import Header from './presentation/components/headerBar';
 import ListTripsUser from "./presentation/listTripsUser"; 
 import Login from './presentation/Login';
 import Register from './presentation/register';
-import DetailTripStages from './presentation/detailTripStages';
+//import DetailTripStages from './presentation/detailTripStages';
+import DetailTableTripStages from './presentation/components/detailTableTripStages';
 
 function App() {
 
@@ -34,8 +35,8 @@ function App() {
                   <ListTripsUser/>
               </AuthRouteComponent>
 
-              <AuthRouteComponent path = "/detailTripStages">
-                  <Route exact path="/detailTripStages" component={DetailTripStages}/>
+              <AuthRouteComponent path = "/detailTableTripStages">
+                  <Route exact path="/detailTableTripStages" component={DetailTableTripStages}/>
               </AuthRouteComponent>
 
             </Switch>
