@@ -17,18 +17,23 @@ import MapChart from './components/MapChart';
 import * as Provider from '../util/Provider';
 
 
+type Props = {
+    idTrip: number
+    stages: Stage[]
+}
 
-const DetailTripStages: React.FC = () =>{
+const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
     const{ userInfo } = React.useContext(AuthContext);
-    const idTrip = useLocation().state;
-    const [trip, setTrip] = useState<Trip>();
-    const [stages, setStages] = useState<Stage[]>([]);
+    //const idTrip = useLocation().state;                 // DEPRECATED??
+    //const [trip, setTrip] = useState<Trip>();           // DEPRECATED
+    //const [stages, setStages] = useState<Stage[]>([]); // DEPRECATED
     const [showModal, setShowModal] = useState(false);
     const [updateMap, setUpdateMap] = useState(false);
+    const [updateState, setState] = useState(false);//useStateWithCallbackLazy(false);//useState(false);
     const blocStage = Provider.ProviderStages(idTrip as number);
 
     useEffect(() =>{
-        console.log("update the detail view");
+        /*console.log("update the detail view");
         const token = localStorage.getItem("token");
         const fetchInitialData = async () => {
           try{
@@ -43,29 +48,37 @@ const DetailTripStages: React.FC = () =>{
         }
         fetchInitialData().then();
         getStages();
+        console.log("end of useEffect");*/
+        
 
-    }, [showModal, updateMap]);
+    }, [showModal, updateState]);
 
     
 
     const handleShowModal = () =>{
         setShowModal(true);
+        setState(true);
         setUpdateMap(true);
     }
 
     
-    const getStages = async ()=>{
-        await blocStage.getStages()
+    /*const getStages = async ()=>{
+        /*await blocStage.getStages()
         .then(res =>{
             console.log(res);
             setStages(res);
         })
         .catch(error =>{
             console.error("Error trying to fetch the stages: " + error);
-        });
-    }
+        });*//*
+        const res = await blocStage.getStages();
+        //console.log(res);
+        setStages(res);
+
+    }*/
 
     const handleEditStage = () =>{
+        //setShowModal(true);
         // To be implemented
     }
 
@@ -78,15 +91,18 @@ const DetailTripStages: React.FC = () =>{
         .catch(error =>{
             console.error("Error trying to delete a stage: " + error);
         });
-
-        setUpdateMap(true);
+        //// WATCH OUT
+        /*setState(true, ()=>{
+            setUpdateMap(true);
+        });*/
+        
     }
 
    
     return(
         <Container >
             <br/>
-            <Row><h1>{trip?.name as string}</h1></Row>
+            <Row></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
                         {stages.length && 
@@ -110,7 +126,7 @@ const DetailTripStages: React.FC = () =>{
                             dateEnd = {stage.endDate}
                             image = {stage.imageBase64}
                             edit = {false}
-                            onChangeInput = {()=>{}}
+                            onChangeInput = {()=>{}} //When the slide passes over
                         />
                         <Row>
                             <Col></Col>
