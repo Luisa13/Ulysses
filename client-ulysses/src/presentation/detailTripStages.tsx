@@ -30,7 +30,7 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
     const [showModal, setShowModal] = useState(false);
     const [updateMap, setUpdateMap] = useState(false);
     const [updateState, setState] = useState(false);//useStateWithCallbackLazy(false);//useState(false);
-    const blocStage = Provider.ProviderStages(idTrip as number);
+    const blocStage = Provider.ProviderStages(idTrip);
 
     useEffect(() =>{
         /*console.log("update the detail view");

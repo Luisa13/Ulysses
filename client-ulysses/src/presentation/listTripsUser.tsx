@@ -111,7 +111,7 @@ import * as Util from '../util/Util';
 
                       <td>
                         <Link to={{
-                          pathname:`/detailTripStages/`,
+                          pathname:`/detailTableTripStages/`,
                           state: trip.id
                         }}><Eye color="royalblue" size={25} />
                         </Link>
