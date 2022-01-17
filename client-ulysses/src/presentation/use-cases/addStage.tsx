@@ -50,14 +50,6 @@ const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
         .catch(error =>{
             toast.error("Something wrong happen trying to add a stage.");
         });
-        /*trip.stages.push(newStage);
-        blocTrip.updateTrip(trip)
-        .then(res =>{
-            toast.success("New stage added to trip!");
-        })
-        .catch(ex =>{
-            toast.error("Something wrong happen trying to add a stage.");
-        });*/
         
         show = false;
         await hide();
