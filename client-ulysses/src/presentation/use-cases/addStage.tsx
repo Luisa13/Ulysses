@@ -24,6 +24,7 @@ const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
     const handlerOnFormChange = async (event: React.ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = event.target;
         const files = event.target.files;
+        // Files reader: DEPRECATED
         if(files){
             const reader = new FileReader();
             reader.readAsBinaryString(files[0]);
@@ -50,14 +51,6 @@ const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
         .catch(error =>{
             toast.error("Something wrong happen trying to add a stage.");
         });
-        /*trip.stages.push(newStage);
-        blocTrip.updateTrip(trip)
-        .then(res =>{
-            toast.success("New stage added to trip!");
-        })
-        .catch(ex =>{
-            toast.error("Something wrong happen trying to add a stage.");
-        });*/
         
         show = false;
         await hide();

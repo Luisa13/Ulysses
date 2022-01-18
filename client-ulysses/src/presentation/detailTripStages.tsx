@@ -1,5 +1,5 @@
  import React, {useEffect, useState} from 'react'
-import {Button, Col, Container, Card, Row} from 'react-bootstrap';
+import {Button, Col, Container, Card, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import ItemCard from './components/itemCardCarousel';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -17,55 +17,36 @@ import MapChart from './components/MapChart';
 import * as Provider from '../util/Provider';
 
 
+type Props = {
+    idTrip: number
+    stages: Stage[]
+}
 
-const DetailTripStages: React.FC = () =>{
+const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
     const{ userInfo } = React.useContext(AuthContext);
-    const idTrip = useLocation().state;
-    const [trip, setTrip] = useState<Trip>();
-    const [stages, setStages] = useState<Stage[]>([]);
+    //const idTrip = useLocation().state;                 // DEPRECATED??
+    //const [trip, setTrip] = useState<Trip>();           // DEPRECATED
+    //const [stages, setStages] = useState<Stage[]>([]); // DEPRECATED
     const [showModal, setShowModal] = useState(false);
     const [updateMap, setUpdateMap] = useState(false);
-    const blocStage = Provider.ProviderStages(idTrip as number);
+    const [updateState, setState] = useState(false);//useStateWithCallbackLazy(false);//useState(false);
+    const blocStage = Provider.ProviderStages(idTrip);
 
     useEffect(() =>{
-        console.log("update the detail view");
-        const token = localStorage.getItem("token");
-        const fetchInitialData = async () => {
-          try{
-            const u = await ApiService.getUser(token as string)
-            .then(user =>{
-                const currentTrip = user.trips.filter(trip => trip.id === idTrip )[0];
-                setTrip(currentTrip);
-            });
-          }catch(error){
-            console.log(error);
-          }
-        }
-        fetchInitialData().then();
-        getStages();
 
-    }, [showModal, updateMap]);
+    }, [showModal, updateState]);
 
     
 
     const handleShowModal = () =>{
         setShowModal(true);
+        setState(true);
         setUpdateMap(true);
     }
 
-    
-    const getStages = async ()=>{
-        await blocStage.getStages()
-        .then(res =>{
-            console.log(res);
-            setStages(res);
-        })
-        .catch(error =>{
-            console.error("Error trying to fetch the stages: " + error);
-        });
-    }
 
     const handleEditStage = () =>{
+        //setShowModal(true);
         // To be implemented
     }
 
@@ -78,15 +59,18 @@ const DetailTripStages: React.FC = () =>{
         .catch(error =>{
             console.error("Error trying to delete a stage: " + error);
         });
-
-        setUpdateMap(true);
+        //// WATCH OUT
+        /*setState(true, ()=>{
+            setUpdateMap(true);
+        });*/
+        
     }
 
    
     return(
         <Container >
             <br/>
-            <Row><h1>{trip?.name as string}</h1></Row>
+            <Row></Row>
             <Row className="justify-content-md-center">
                     <Card style={{ height: '18rem' }}>
                         {stages.length && 
@@ -102,15 +86,15 @@ const DetailTripStages: React.FC = () =>{
                         {stages && stages.map( (stage) =>(
                             <>
                             <ItemCard
-                            place = {stage.place}
-                            address = {stage.accomodation}
-                            telephone = {stage.phone}
-                            mail = {stage.email}
-                            dateStart = {stage.startDate}
-                            dateEnd = {stage.endDate}
-                            image = {stage.imageBase64}
-                            edit = {false}
-                            onChangeInput = {()=>{}}
+                                place = {stage.place}
+                                address = {stage.accomodation}
+                                telephone = {stage.phone}
+                                mail = {stage.email}
+                                dateStart = {stage.startDate}
+                                dateEnd = {stage.endDate}
+                                image = {stage.imageBase64}
+                                edit = {false}
+                                onChangeInput = {()=>{}} //When the slide passes over
                         />
                         <Row>
                             <Col></Col>
@@ -136,7 +120,12 @@ const DetailTripStages: React.FC = () =>{
                     </AliceCarousel>
             </Row>
             <Row >
-                <Col xs lg="2"><Button variant="light" href="#" onClick = {handleShowModal}><PlusCircleFill color="royalblue"  size={50} /></Button></Col>
+                <Col xs lg="2">
+                <OverlayTrigger overlay={<Tooltip id="tooltip-new-stage">Add a new Stage!</Tooltip>}>
+                    <Button variant="light" href="#" onClick = {handleShowModal}><PlusCircleFill color="royalblue"  size={50} /></Button>
+                </OverlayTrigger>
+                </Col>
+                    
             </Row>
 
 

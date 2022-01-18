@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * This class represents a user in the system who can create trips
  * 
@@ -21,6 +20,8 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idUser")
 	private Long id;
+	
+	//private Long idUser;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "surname")
