@@ -24,6 +24,7 @@ const AddNewStageModal: React.FC<Props> = ({ id_trip, show, hide }) => {
     const handlerOnFormChange = async (event: React.ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = event.target;
         const files = event.target.files;
+        // Files reader: DEPRECATED
         if(files){
             const reader = new FileReader();
             reader.readAsBinaryString(files[0]);

@@ -1,5 +1,5 @@
  import React, {useEffect, useState} from 'react'
-import {Button, Col, Container, Card, Row} from 'react-bootstrap';
+import {Button, Col, Container, Card, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import ItemCard from './components/itemCardCarousel';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -33,23 +33,6 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
     const blocStage = Provider.ProviderStages(idTrip);
 
     useEffect(() =>{
-        /*console.log("update the detail view");
-        const token = localStorage.getItem("token");
-        const fetchInitialData = async () => {
-          try{
-            const u = await ApiService.getUser(token as string)
-            .then(user =>{
-                const currentTrip = user.trips.filter(trip => trip.id === idTrip )[0];
-                setTrip(currentTrip);
-            });
-          }catch(error){
-            console.log(error);
-          }
-        }
-        fetchInitialData().then();
-        getStages();
-        console.log("end of useEffect");*/
-        
 
     }, [showModal, updateState]);
 
@@ -61,21 +44,6 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
         setUpdateMap(true);
     }
 
-    
-    /*const getStages = async ()=>{
-        /*await blocStage.getStages()
-        .then(res =>{
-            console.log(res);
-            setStages(res);
-        })
-        .catch(error =>{
-            console.error("Error trying to fetch the stages: " + error);
-        });*//*
-        const res = await blocStage.getStages();
-        //console.log(res);
-        setStages(res);
-
-    }*/
 
     const handleEditStage = () =>{
         //setShowModal(true);
@@ -118,15 +86,15 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
                         {stages && stages.map( (stage) =>(
                             <>
                             <ItemCard
-                            place = {stage.place}
-                            address = {stage.accomodation}
-                            telephone = {stage.phone}
-                            mail = {stage.email}
-                            dateStart = {stage.startDate}
-                            dateEnd = {stage.endDate}
-                            image = {stage.imageBase64}
-                            edit = {false}
-                            onChangeInput = {()=>{}} //When the slide passes over
+                                place = {stage.place}
+                                address = {stage.accomodation}
+                                telephone = {stage.phone}
+                                mail = {stage.email}
+                                dateStart = {stage.startDate}
+                                dateEnd = {stage.endDate}
+                                image = {stage.imageBase64}
+                                edit = {false}
+                                onChangeInput = {()=>{}} //When the slide passes over
                         />
                         <Row>
                             <Col></Col>
@@ -152,7 +120,12 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
                     </AliceCarousel>
             </Row>
             <Row >
-                <Col xs lg="2"><Button variant="light" href="#" onClick = {handleShowModal}><PlusCircleFill color="royalblue"  size={50} /></Button></Col>
+                <Col xs lg="2">
+                <OverlayTrigger overlay={<Tooltip id="tooltip-new-stage">Add a new Stage!</Tooltip>}>
+                    <Button variant="light" href="#" onClick = {handleShowModal}><PlusCircleFill color="royalblue"  size={50} /></Button>
+                </OverlayTrigger>
+                </Col>
+                    
             </Row>
 
 

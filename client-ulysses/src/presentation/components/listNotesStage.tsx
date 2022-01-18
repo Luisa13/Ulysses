@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Col, Container, Card, Row} from 'react-bootstrap';
+import {ListGroup, Button, Col, Container, Card, Row} from 'react-bootstrap';
 
 import Stage from "../../domain/entity/Stage";
 
@@ -9,6 +9,7 @@ const ListNotesStage: React.FC = () =>{
 
     return(
         <Container>
+            <h4>Notes</h4>
         </Container>
     );
 }

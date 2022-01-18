@@ -3,6 +3,7 @@ import { Col, Card, Row, Form, Image } from 'react-bootstrap';
 
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { CalendarEvent, HouseDoor, Telephone, Envelope } from 'react-bootstrap-icons';
+import ListNotesStage from './listNotesStage';
 import * as Util from '../../util/Util';
 
 
@@ -25,21 +26,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
         <Row>
             <Col sm={5}>
                 <Card style={{ height: '15rem' }}>
-                    {!edit ?
-                        <Image  style={{ height: '15rem' }} 
-                        src={(image==="" || image === undefined) ? 
-                        "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/96/4c/cb.jpg"
-                        : "data:image/jpeg;base64" + image} rounded />
-                    :
-                        <input 
-                        type="file" 
-                        className="form-control" 
-                        name="file" 
-                        multiple
-                        accept = ".jpg, .png, .jpeg" 
-                        onChange={onChangeInput}
-                        />
-                    }
+                   <ListNotesStage/>
                 </Card>
             </Col>
             <Col sm={7}>

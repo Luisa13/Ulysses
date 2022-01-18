@@ -6,6 +6,7 @@ import {Container, Row, Tabs, Tab} from 'react-bootstrap';
 import Trip from "../../domain/entity/Trip";
 import Stage from "../../domain/entity/Stage";
 import DetailTripStages from '../detailTripStages';
+import CalendarStageView from './calendarStageView'
 import * as ApiService from '../../util/ApiService';
 import * as Provider from '../../util/Provider';
 
@@ -78,6 +79,9 @@ const DetailTableTripStages: React.FC = () =>{
                         />
                     </Tab>
                     <Tab eventKey="calendar" title="Calendar">
+                        <CalendarStageView
+                            stages =  {stages}
+                        />
                         
                     </Tab>
 

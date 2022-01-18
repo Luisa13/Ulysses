@@ -87,7 +87,7 @@ import * as Util from '../util/Util';
     return (
         <>
           <Container>
-          <Row><h1>Trip List</h1></Row>
+          <Row><h1>My Trips</h1></Row>
           <Row className="justify-content-md-center">
           <Col>
           <Card><Card.Body>
