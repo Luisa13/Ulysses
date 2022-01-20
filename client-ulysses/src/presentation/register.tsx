@@ -24,7 +24,7 @@ const Register: React.FC = () => {
             console.error("The passwords must be the same");
             return;
         }
-        const newUser = new User(1, state.name, state.surname, state.email, state.password, "USER", [] as Trip[]);
+        const newUser = new User(1, state.name, state.surname, state.email, state.password, "", [] as Trip[]);
         console.log(newUser);
         blocUser.createUser(newUser)
         .then(res =>{

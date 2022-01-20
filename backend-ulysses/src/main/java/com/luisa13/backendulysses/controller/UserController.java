@@ -23,7 +23,6 @@ import com.luisa13.backendulysses.exception.UserNotFoundException;
 import com.luisa13.backendulysses.model.User;
 import com.luisa13.backendulysses.service.UserService;
 
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/user")
@@ -31,65 +30,78 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	/**
 	 * Creates a new user in the system.
+	 * 
 	 * @param User
 	 * @return User
-	 * */
+	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public User addUser(@RequestBody User user) {
-		return this.userService.addUser(user);
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		HttpStatus response;
+		try {
+			User newUser = new User(user.getName(), user.getSurname(), user.getEmail());
+			newUser.setPassword(user.getPassword());
+			newUser.setRole("USER");
+			response = HttpStatus.OK;
+		} catch (RuntimeException ex) {
+			response = HttpStatus.CONFLICT;
+			throw new UserNotFoundException(ex.getMessage());
+		}
+		// return this.userService.addUser(user);
+		return new ResponseEntity<User>(response);
 	}
-	
+
 	/**
 	 * Deletes a existing user in the system.
+	 * 
 	 * @param Long
 	 * @return HttpStatus
-	 * */
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable Long id) {
 		HttpStatus response;
 		try {
 			this.userService.deleteUserById(id);
 			response = HttpStatus.OK;
-		}catch(NoSuchElementException ex) {
+		} catch (NoSuchElementException ex) {
 			response = HttpStatus.NOT_FOUND;
 			throw new UserNotFoundException(ex.getMessage());
 		}
-		
+
 		return new ResponseEntity<String>(response);
 	}
-	
+
 	/**
 	 * Updates a user that already exists in the system.
+	 * 
 	 * @param User
 	 * @return HttpStatus
-	 * */
+	 */
 	@PutMapping("/updateuser")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		HttpStatus response;
 		try {
 			this.userService.updateUser(user);
 			response = HttpStatus.OK;
-		}catch(RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			response = HttpStatus.NOT_FOUND;
 			throw new UserNotFoundException(ex.getMessage());
 		}
-		
+
 		return new ResponseEntity<User>(response);
 	}
-	
+
 	/**
 	 * Returns a list with all the users in the system.
+	 * 
 	 * @return List<User>
-	 * */
+	 */
 	@GetMapping("/allusers")
-	public List<User> getAllUser(){
+	public List<User> getAllUser() {
 		return this.userService.getAllUsers();
 	}
-	
 
-	
 }
