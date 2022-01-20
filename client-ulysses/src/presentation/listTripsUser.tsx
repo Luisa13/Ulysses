@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from "react";
-import {useHistory, Link, Route} from "react-router-dom";
-import {Button, Card, Col, Container, Table, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import {Eye, PencilFill, Trash } from 'react-bootstrap-icons';
+import {Button, Card, Col, Container, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../domain/components/authContext';
-//import DetailTripStages from './detailTripStages';
-import AddNewTripModal from "./use-cases/addTrip"
+import AddNewTripModal from "./use-cases/addTrip";
+import ListItemTrips from "./components/listItemTrips";
 import * as ApiService from '../util/ApiService';
 import Trip from "../domain/entity/Trip";
 import * as Provider from '../util/Provider';
@@ -43,24 +41,7 @@ import * as Util from '../util/Util';
       setShowModal(true);
     }
 
-    /*const geDateFormat = (dateStr: string):string => {
-      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      const date = new Date(dateStr.toString());
-      const dateFormat = date.getDay().toString() + " " 
-      +  monthNames[date.getMonth()].toString() + " " 
-      + date.getFullYear().toString();
-
-      return dateFormat;
-    }*/
-
-    /*const goToDetail = () =>{
-      history.push({
-        pathname: "detailTripStages",
-        state:{stageName: "bla"}
-      });
-    }*/
-
-    const deleteTrip = async (trip_id: number) => {
+    const deleteTripHandler = async (trip_id: number) => {
       const newListTrips = updatedTrips.filter(trip =>trip.id != trip_id);
 
       const user_obj = {
@@ -82,7 +63,8 @@ import * as Util from '../util/Util';
       });
 
     }
-  
+
+
 
     return (
         <>
@@ -91,42 +73,25 @@ import * as Util from '../util/Util';
           <Row className="justify-content-md-center">
           <Col>
           <Card><Card.Body>
-          <Table responsive="sm">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Date</th>
-                
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-    
-              {
+            {
                 updatedTrips && updatedTrips.map( (trip:any)=>(
-                  <tr key={trip.id}>
-                      <td>{trip.name}</td>
-                      <td>{Util.geDateFormat(trip.date)}</td>
-                     
+                  <Row>
+                  <ListItemTrips
+                    trip = {trip}
+                    delete = {deleteTripHandler}
+                  />
+                  </Row>
 
-                      <td>
-                        <Link to={{
-                          pathname:`/detailTableTripStages/`,
-                          state: trip.id
-                        }}><Eye color="royalblue" size={25} />
-                        </Link>
-                        <Button variant="light" href="#"><PencilFill color="royalblue" size={25} /></Button>{' '}
-                        <Button variant="light" href="#"><Trash color="royalblue" onClick = {()=>deleteTrip(trip.id)} size={25} /></Button>{' '}
-                      </td>
-                  </tr>
                 ))
               }
-            </tbody>
-          </Table>
+          </Card.Body></Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
           <Button variant="primary" onClick={handleShow}>
             Add Trip
           </Button>
-          </Card.Body></Card>
           </Col>
         </Row>
         
