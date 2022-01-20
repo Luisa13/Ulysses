@@ -1,16 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import {ListGroup, Button, Col, Container, Card, Row} from 'react-bootstrap';
-
+import { CircleFill } from 'react-bootstrap-icons';
 import Stage from "../../domain/entity/Stage";
+import '../../style/generalStyle.css';
 
 
 
 const ListNotesStage: React.FC = () =>{
 
     return(
-        <Container>
-            <h4>Notes</h4>
-        </Container>
+
+            <Row className = "itemBoxNotes">
+                <Col xs={1}>
+                   <CircleFill color="pink" size={15} />
+                </Col>
+                <Col>
+                    Visit the cathedral.  Visit the cathedral.  Visit the cathedral.  Visit the cathedral. 
+                </Col>
+            </Row>
+
+
     );
 }
 

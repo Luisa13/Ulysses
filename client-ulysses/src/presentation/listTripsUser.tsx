@@ -79,17 +79,20 @@ import * as Util from '../util/Util';
             
               {
                   updatedTrips && updatedTrips.map( (trip:any) => (
+     
                     <Row>
-                      <ListItemTrips
-                        trip = {trip}
-                        edit = {editTripHandler}
-                        delete = {deleteTripHandler}
-                      />
+                      <Col>
+                        <ListItemTrips
+                          trip = {trip}
+                          edit = {editTripHandler}
+                          delete = {deleteTripHandler}
+                        />
+                      </Col>
                     </Row>
 
                   ))
                 }
-                
+
             </Col>
           </Row>
           <Row>
