@@ -10,6 +10,7 @@ import * as Util from '../../util/Util';
 
 type Props = {
     trip: Trip;
+    edit(id:number): void;
     delete(id: number):void;
 }
 
@@ -25,8 +26,12 @@ const ListItemTrips: React.FC<Props> = (props) =>{
         <Card>
             <Card.Body>
                 <Row>
-                    <Col xs={2}>
-                        <Image roundedCircle = {true}></Image>
+                    <Col xs={1}>
+                        <Image 
+                            style={{width: 75, height: 75, borderRadius: 60/ 2}} 
+                            src="https://images.ctfassets.net/pnliwdxhy0tx/3WwlXGBiVYt1eL4CWeDw6a/afbbc3446c7f7711249142b9a19be64f/copenhagen-154.jpg" 
+                            roundedCircle = {true}>
+                        </Image>
                     </Col>
                     <Col>
                         <Card.Title>{props.trip.name}</Card.Title>
@@ -41,7 +46,7 @@ const ListItemTrips: React.FC<Props> = (props) =>{
                             state: props.trip.id
                             }}><Eye color="royalblue" size={25} />
                         </Link>
-                        <Button variant="light" href="#"><PencilFill color="royalblue" size={25} /></Button>{' '}
+                        <Button variant="light" href="#"><PencilFill color="royalblue" size={25} onClick = {()=>props.edit(props.trip.id)}/></Button>{' '}
                         <Button variant="light" href="#"><Trash color="royalblue" onClick = {()=>props.delete(props.trip.id)} size={25} /></Button>{' '}
                     </Col> 
                 </Row>

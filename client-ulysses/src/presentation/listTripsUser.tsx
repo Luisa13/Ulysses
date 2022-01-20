@@ -41,6 +41,10 @@ import * as Util from '../util/Util';
       setShowModal(true);
     }
 
+    const editTripHandler = () =>{
+      setShowModal(true);
+    }
+
     const deleteTripHandler = async (trip_id: number) => {
       const newListTrips = updatedTrips.filter(trip =>trip.id != trip_id);
 
@@ -69,39 +73,41 @@ import * as Util from '../util/Util';
     return (
         <>
           <Container>
-          <Row><h1>My Trips</h1></Row>
-          <Row className="justify-content-md-center">
-          <Col>
-          <Card><Card.Body>
-            {
-                updatedTrips && updatedTrips.map( (trip:any)=>(
-                  <Row>
-                  <ListItemTrips
-                    trip = {trip}
-                    delete = {deleteTripHandler}
-                  />
-                  </Row>
+            <Row><h1>My Trips</h1></Row>
+            <Row className="justify-content-md-center">
+            <Col>
+            
+              {
+                  updatedTrips && updatedTrips.map( (trip:any) => (
+                    <Row>
+                      <ListItemTrips
+                        trip = {trip}
+                        edit = {editTripHandler}
+                        delete = {deleteTripHandler}
+                      />
+                    </Row>
 
-                ))
-              }
-          </Card.Body></Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <Button variant="primary" onClick={handleShow}>
-            Add Trip
-          </Button>
-          </Col>
-        </Row>
-        
-        <AddNewTripModal
-          show = {showModal}
-          hide = {() => setShowModal(false)}
-        > </AddNewTripModal>
-      <Toaster 
-      position="bottom-right"
-      reverseOrder={false}/>
+                  ))
+                }
+                
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            <Button variant="primary" onClick={handleShow}>
+              Add Trip
+            </Button>
+            </Col>
+          </Row>
+          
+          <AddNewTripModal
+            show = {showModal}
+            hide = {() => setShowModal(false)}
+          > </AddNewTripModal>
+          
+        <Toaster 
+        position="bottom-right"
+        reverseOrder={false}/>
 
       </Container>
     
