@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {ComposableMap, Geographies, Geography, Marker, Point} from "react-simple-maps";
 import Geocode from "react-geocode";
-import PointMap from "../../domain/entity/PointMap";
+import PointMap from "../../../domain/entity/PointMap";
   
 const geoUrl =
 "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
