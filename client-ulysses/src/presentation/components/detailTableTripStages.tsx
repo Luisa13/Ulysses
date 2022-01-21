@@ -78,13 +78,13 @@ const DetailTableTripStages: React.FC = () =>{
                                 stages =  {stages}
                             />
                         </Tab>
-                        <Tab eventKey="calendar" title="Calendar">
+                        <Tab eventKey="calendar" title="Calendar & Activities">
                             <CalendarStageView
                                 stages =  {stages}
                             />
                             
                         </Tab>
-                        <Tab eventKey="activities" title="Activities">
+                        <Tab eventKey="explore" title="Explore">
                             
                             
                         </Tab>
