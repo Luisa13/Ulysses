@@ -21,7 +21,7 @@ const DetailTableTripStages: React.FC = () =>{
     const [updateState, setState] = useState(false); //DEPRECATED?
 
     useEffect(() =>{
-        console.log("update the detail view");
+        //console.log("update the detail view");
         const token = localStorage.getItem("token");
         const fetchInitialData = async () => {
           try{
@@ -36,7 +36,7 @@ const DetailTableTripStages: React.FC = () =>{
         }
         fetchInitialData().then();
         getStages();
-        console.log("end of useEffect");
+       // console.log("end of useEffect");
         
 
     }, [updateState]);

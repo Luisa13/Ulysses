@@ -6,6 +6,7 @@ import { AuthContext } from '../domain/components/authContext';
 import Pagination from 'react-bootstrap/Pagination';
 import AddNewTripModal from "./use-cases/addTrip";
 import ListItemTrips from "./components/listItemTrips";
+import ConfirmationModal from './components/modals/deleteConfirmationModal';
 import * as ApiService from '../util/ApiService';
 import Trip from "../domain/entity/Trip";
 import * as Provider from '../util/Provider';
@@ -15,6 +16,8 @@ import * as Util from '../util/Util';
     
     const{ userInfo, setUserInfo } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const [idTrip, setIdTrip] = useState(-1);
     const [updatedTrips, setUpdatedTrips] = useState<Trip[]>([]);
     //const history = useHistory();
     const blocUser = Provider.ProviderUsers();
@@ -46,7 +49,13 @@ import * as Util from '../util/Util';
       setShowModal(true);
     }
 
-    const deleteTripHandler = async (trip_id: number) => {
+    const deleteTripHandler = async (trip_id: number) =>{
+        setIdTrip(trip_id);
+        setShowDelete(true);
+    }
+
+
+    const deleteTrip = async (trip_id: number) => {
       const newListTrips = updatedTrips.filter(trip =>trip.id != trip_id);
 
       const user_obj = {
@@ -66,6 +75,8 @@ import * as Util from '../util/Util';
           setUpdatedTrips(newListTrips as Trip[]);
           toast.success("Trip removed!");
       });
+
+      setShowDelete(false);
 
     }
 
@@ -114,6 +125,15 @@ import * as Util from '../util/Util';
             show = {showModal}
             hide = {() => setShowModal(false)}
           > </AddNewTripModal>
+
+          <ConfirmationModal
+            show = {showDelete}
+            hide = {() => setShowDelete(false)}
+            item = {"trip"}
+            id = {idTrip}
+            function = {deleteTrip}
+          >
+          </ConfirmationModal>
           
         <Toaster 
         position="bottom-right"
