@@ -3,6 +3,7 @@ import {Button, Card, Col, Container, Row, OverlayTrigger, Tooltip} from 'react-
 import toast, { Toaster } from 'react-hot-toast';
 
 import { AuthContext } from '../domain/components/authContext';
+import Pagination from 'react-bootstrap/Pagination';
 import AddNewTripModal from "./use-cases/addTrip";
 import ListItemTrips from "./components/listItemTrips";
 import * as ApiService from '../util/ApiService';
@@ -79,6 +80,7 @@ import * as Util from '../util/Util';
             
               {
                   updatedTrips && updatedTrips.map( (trip:any) => (
+                    
                     <Row>
                       <ListItemTrips
                         trip = {trip}
@@ -90,6 +92,15 @@ import * as Util from '../util/Util';
                   ))
                 }
                 
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Pagination>
+                <Pagination.First />
+                <Pagination.Item >{1}</Pagination.Item>
+                <Pagination.Last />
+              </Pagination>
             </Col>
           </Row>
           <Row>
