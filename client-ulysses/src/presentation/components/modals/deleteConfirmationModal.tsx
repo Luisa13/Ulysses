@@ -1,5 +1,6 @@
 import React from 'react'
 import {Modal, Button} from 'react-bootstrap';
+import {ExclamationTriangle} from 'react-bootstrap-icons';
 
 type IProps = {
     show: boolean,
@@ -17,7 +18,7 @@ const ConfirmationModal: React.FC<IProps> = (props) =>{
             show={props.show}
             onHide={props.hide}>
             <Modal.Header>
-                <Modal.Title>Delete {props.item}</Modal.Title>
+                <Modal.Title><ExclamationTriangle color="black"  size={25}/> Delete {props.item}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 Are you sure you want to delete this?

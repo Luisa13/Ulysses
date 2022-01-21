@@ -132,8 +132,7 @@ import * as Util from '../util/Util';
             item = {"trip"}
             id = {idTrip}
             function = {deleteTrip}
-          >
-          </ConfirmationModal>
+          />
           
         <Toaster 
         position="bottom-right"
