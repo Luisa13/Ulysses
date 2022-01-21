@@ -72,18 +72,22 @@ const DetailTableTripStages: React.FC = () =>{
                         onSelect={handleSelect}
                         className="mb-3"
                     >
-                    <Tab eventKey="overview" title="Overview">
-                        <DetailTripStages 
-                            idTrip = {idTrip as number}
-                            stages =  {stages}
-                        />
-                    </Tab>
-                    <Tab eventKey="calendar" title="Calendar">
-                        <CalendarStageView
-                            stages =  {stages}
-                        />
-                        
-                    </Tab>
+                        <Tab eventKey="overview" title="Overview">
+                            <DetailTripStages 
+                                idTrip = {idTrip as number}
+                                stages =  {stages}
+                            />
+                        </Tab>
+                        <Tab eventKey="calendar" title="Calendar">
+                            <CalendarStageView
+                                stages =  {stages}
+                            />
+                            
+                        </Tab>
+                        <Tab eventKey="activities" title="Activities">
+                            
+                            
+                        </Tab>
 
                     </Tabs>
   

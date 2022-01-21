@@ -94,20 +94,19 @@ import * as Util from '../util/Util';
                 
             </Col>
           </Row>
+
           <Row>
+            <Col xs = "2">
+            <Button variant="primary" onClick={handleShow}>
+              Add Trip
+            </Button>
+            </Col>
             <Col>
               <Pagination>
                 <Pagination.First />
                 <Pagination.Item >{1}</Pagination.Item>
                 <Pagination.Last />
               </Pagination>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-            <Button variant="primary" onClick={handleShow}>
-              Add Trip
-            </Button>
             </Col>
           </Row>
           
