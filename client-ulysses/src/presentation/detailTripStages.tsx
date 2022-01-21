@@ -7,6 +7,7 @@ import {PlusCircleFill} from 'react-bootstrap-icons';
 import * as ApiService from '../util/ApiService';
 import {PencilFill, Trash} from 'react-bootstrap-icons';
 import toast, { Toaster } from 'react-hot-toast';
+import ConfirmationModal from './components/modals/deleteConfirmationModal';
 
 import { AuthContext } from '../domain/components/authContext';
 import { useLocation} from "react-router-dom";
@@ -24,6 +25,8 @@ type Props = {
 
 const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
     const{ userInfo } = React.useContext(AuthContext);
+    const [showDelete, setShowDelete] = useState(false);
+    const [idStage, setIdStage] = useState(-1);
     //const idTrip = useLocation().state;                 // DEPRECATED??
     //const [trip, setTrip] = useState<Trip>();           // DEPRECATED
     //const [stages, setStages] = useState<Stage[]>([]); // DEPRECATED
@@ -37,6 +40,11 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
     }, [showModal, updateState]);
 
     
+
+    const deleteStage = async(stage_id: number) =>{
+        setIdStage(stage_id);
+        setShowDelete(true);
+    }
 
     const handleShowModal = () =>{
         setShowModal(true);
@@ -59,10 +67,12 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
         .catch(error =>{
             console.error("Error trying to delete a stage: " + error);
         });
-        //// WATCH OUT
+        //// WATCH OUT :  render the map
         /*setState(true, ()=>{
             setUpdateMap(true);
         });*/
+
+        setShowDelete(false);
         
     }
 
@@ -105,7 +115,7 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
                                             <Col xs lg="2"><Button variant="light" href="#" onClick = {handleEditStage}>
                                                 <PencilFill color="royalblue" size={25} />
                                             </Button></Col>
-                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {()=>handleDeleteStage(stage.id)}>
+                                            <Col xs lg="2"><Button variant="light" href="#" onClick = {()=>deleteStage(stage.id)}>
                                                 <Trash color="royalblue"  size={25} />
                                             </Button></Col>
                                         </Row>
@@ -134,6 +144,14 @@ const DetailTripStages: React.FC<Props> = ({idTrip, stages}) =>{
                 show = {showModal}
                 hide = {() => setShowModal(false)}
             ></AddNewStageModal>
+
+            <ConfirmationModal
+                show = {showDelete}
+                hide = {() => setShowDelete(false)}
+                item = {"stage"}
+                id = {idStage}
+                function = {handleDeleteStage}
+            />
 
             <Toaster 
                 position="bottom-right"

@@ -20,10 +20,13 @@ const ListItemTrips: React.FC<Props> = (props) =>{
     const blocTrip = Provider.ProviderTrips();
 
     
-
-    
+    const style = {
+        box: {
+            marginBottom: 15
+        }
+    };
     return(
-        <Card>
+        <Card style= {style.box}>
             <Card.Body>
                 <Row>
                     <Col xs={1}>
