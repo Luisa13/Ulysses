@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {Button, Col, Container, Form, Row} from 'react-bootstrap';
+import {Button, Col, Container, Form, Row, OverlayTrigger, Tooltip} from 'react-bootstrap';
 //import {Field, FieldProps, Formik, FormikHelpers, FormikProps} from 'formik';
+import {QuestionCircleFill} from 'react-bootstrap-icons';
 import * as Provider from '../util/Provider';
 import User from '../domain/entity/User';
 import Trip from '../domain/entity/Trip';
@@ -46,10 +47,14 @@ const Register: React.FC = () => {
             <Col>
             <Form>
 
-                    <div className="form-group">
-                        <label>First name</label>
+                    <div className="form-group"> 
+                        <label>First name </label>
+                        <OverlayTrigger overlay={<Tooltip id="tooltip-new-stage">That will be your userName</Tooltip>}>
+                            <QuestionCircleFill/>
+                        </OverlayTrigger>
                         <input name = "name" type="text" className="form-control" placeholder="First name" onChange = {handlerChangeForm}/>
                     </div>
+                    
                     <br></br>
 
                     <div className="form-group">
