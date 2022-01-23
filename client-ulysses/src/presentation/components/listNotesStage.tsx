@@ -6,7 +6,7 @@ import '../../style/generalStyle.css';
 
 
 type IProp = {
-    key: string;
+    itemKey: string;
     colorToggle: string;
     mainNote: string;
     description: string;
@@ -14,19 +14,10 @@ type IProp = {
 
 const ListNotesStage: React.FC<IProp> = (props) =>{
 
-    /**
-     *  <Row className = "itemBoxNotes">
-                <Col xs={1}>
-                   <CircleFill color="pink" size={15} />
-                </Col>
-                <Col>
-                    Visit the cathedral.  Visit the cathedral.  Visit the cathedral.  Visit the cathedral. 
-                </Col>
-            </Row>
-     */
+
     return(
         <Row className = "itemBoxNotes">
-            <Accordion.Toggle as={Nav} eventKey={props.key}>
+            <Accordion.Toggle as={Nav} eventKey={props.itemKey}>
                 <Col xs={1}>
                    <CircleFill color={props.colorToggle} size={15} />
                 </Col>
@@ -34,7 +25,7 @@ const ListNotesStage: React.FC<IProp> = (props) =>{
                     {props.mainNote}
                 </Col>
             </Accordion.Toggle>
-            <Accordion.Collapse  eventKey={props.key}>
+            <Accordion.Collapse  eventKey={props.itemKey}>
                 <Card.Body>{props.description}</Card.Body>
             </Accordion.Collapse>
         </Row>

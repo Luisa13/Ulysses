@@ -31,7 +31,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                     {
                         <Accordion defaultActiveKey="0">
                         <ListNotesStage
-                            key = {"0"}
+                            itemKey = {"0"}
                             colorToggle = {"pink"}
                             mainNote = {"One note"}
                             description ={"this is a note. So just you know"}
@@ -39,7 +39,7 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                         />
 
                         <ListNotesStage
-                            key = {"1"}
+                            itemKey = {"1"}
                             colorToggle = {"blue"}
                             mainNote = {"Another note"}
                             description ={"this is a note. So just you know"}
