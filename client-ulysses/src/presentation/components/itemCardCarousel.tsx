@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {Container, Col, Card, Row, Form } from 'react-bootstrap';
+import {Accordion, Container, Col, Card, Row, Form } from 'react-bootstrap';
 
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { CalendarEvent, HouseDoor, Telephone, Envelope } from 'react-bootstrap-icons';
@@ -29,11 +29,25 @@ const ItemCard: React.FC<Props> = ({ edit, place, address, mail, telephone, date
                 <Card.Header><h4>Notes</h4></Card.Header>
                     <Container className = "containerScroll">
                     {
-                            <>
-                        <ListNotesStage/>
-                        <ListNotesStage/>
-                        </>
+                        <Accordion defaultActiveKey="0">
+                        <ListNotesStage
+                            key = {"0"}
+                            colorToggle = {"pink"}
+                            mainNote = {"One note"}
+                            description ={"this is a note. So just you know"}
+
+                        />
+
+                        <ListNotesStage
+                            key = {"1"}
+                            colorToggle = {"blue"}
+                            mainNote = {"Another note"}
+                            description ={"this is a note. So just you know"}
+
+                        />
+                        </Accordion>
                     }
+                    
                     </Container>
                 </Card>
             </Col>
